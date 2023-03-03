@@ -8,7 +8,7 @@
     <meta name="keywords" content="gastronomia" />
     <meta name="author" content="Diego Martín Fernández" />
     <meta name="description" content="Página web sobre Caravia" />
-    <title>Bootstrap</title>
+    <title>Caravia</title>
     <link rel="stylesheet" type="text/css" href="styles/estilo.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
 </head>
@@ -35,18 +35,8 @@
         </a>
     </nav>
     <main>
-         <!--  Lista ordenada con al menos 3 elementos
-                 Lista no ordenada con al menos 3 elementos
-                 Lista de definición con al menos 3 elementos
-                 Una de las listas debe tener listas anidadas (pudiendo ser de varios tipos de lista)
-                 Tabla con al menos 3 columnas y 4 filas de datos
-                 Recursos multimedia:
-                o Al menos una imagen adaptable
-                o Al menos un vídeo
-                o Al menos un audio
-                 Utilización de elementos para dotar de estructura semántica a los contenidos.  -->
         <h1>Gastronomía de Caravia</h1>
-        <!-- Lista ordenada con al menos 3 elementos -->
+        <!-- Lista ordenada con al menos 3 elementos - tienen listas anidadas -->
         <section>
             <h2>Top 3 comidas de Caravia</h2>
             <ol>
@@ -82,7 +72,7 @@
             </ul>
         </section>
 
-        <!-- Lista de definicion con al menos 3 elementos -->
+        <!-- Lista de definición con al menos 3 elementos -->
         <section>
             <h2>Cosas que no hay que comer</h2>
             <dl>
@@ -97,21 +87,63 @@
             </dl>
         </section>
 
-        <!--Tabla con al menos 3 columnas y 4 filas de datos SIN ACABAR-->
+        <!-- Tabla con al menos 3 columnas y 4 filas de datos -->
         <section>
             <h2>Tabla con los mejores días para ir a cenar</h2>
             <table>
                 <tr>
+                    <th>Día</th>
                     <th>Viernes</th>
-                    <th>Mañana</th>
-                    <th>Pasado mañana</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
                 </tr>
                 <tr>
+                    <th>Tiempo</th>
                     <td>Soleado</td>
                     <td>Mayormente soleado</td>
                     <td>Parcialmente nublado</td>
                 </tr>
+                <tr>
+                    <th>Gente</th>
+                    <td>Mucha</td>
+                    <td>Muchísima</td>
+                    <td>Poca</td>
+                </tr>
+                <tr>
+                    <th>Entretenimiento</th>
+                    <td>Orquesta</td>
+                    <td>Desfile</td>
+                    <td>No hay</td>
+                </tr>
+                <tr>
+                    <th>Descuentos</th>
+                    <td>10%</td>
+                    <td>0%</td>
+                    <td>25%</td>
+                </tr>
             </table>
+        </section>
+
+        <!-- Imagen -->
+        <section>
+            <h2>Imagen de Caravia</h2>
+            <p>Es una foto del paisaje de Caravia, ideal para hacer picnic</p>
+            <img src="multimedia/images/caravia.jpg" alt="Imagen de Caravia" />    
+        </section>
+
+        <!-- Audio -->
+        <section>
+            <h2>Audio de Caravia</h2>
+            <p>Es un Audio de Caravia</p>
+            <audio src="multimedia/audio/caravia.mp3" controls ></audio>   
+        </section>
+
+        <!-- Video -->
+        <section>
+            <h2>Video de Caravia</h2>
+            <p>Es un video de caravia</p>
+            <video src="multimedia/videos/caravia.mp4"controls preload="auto">
+            </video>  
         </section>
 
     </main>
