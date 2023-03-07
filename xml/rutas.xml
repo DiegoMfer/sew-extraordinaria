@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rutas SYSTEM "rutas.dtd">
+<rutas>
+<ruta>
+    <nombre_ruta>Ruta de la playa</nombre_ruta>
+    <tipo_ruta>Caminata</tipo_ruta>
+    <transporte>A pie</transporte>
+    <fecha_inicio>2023-07-12</fecha_inicio>
+    <hora_inicio>15</hora_inicio>
+    <duracion>2 horas</duracion>
+    <agencia>Sin agencia</agencia>
+    <descripcion>Paseo por la playa</descripcion>
+</ruta>
+
+
+
+
+
+
+
+<ruta></ruta>
+<ruta></ruta>
+</rutas>

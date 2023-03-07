@@ -1,0 +1,38 @@
+/*Estilos globales*/
+
+/*Especificidad : 001*/
+header, footer, nav {
+
+    /*Estilo*/
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /*Margenes*/
+    margin: 1em -12.5% 1em -12.5%;
+}
+
+/*----------------- Body -----------------*/
+/*Especificidad : 001*/
+body{
+
+    display: grid;
+    /*Margenes*/
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+/* ---------------- Nav ---------------*/
+
+/*Especificidad : 002*/
+nav > a{
+    margin-right: 1em; 
+}
+
+
+/*----------------- Section -----------------*/
+/*Especificidad : 001*/
+section{
+    /*Margen*/
+    margin: 1em;
+    padding: 1em;
+}

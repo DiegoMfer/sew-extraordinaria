@@ -9,31 +9,14 @@
     <meta name="author" content="Diego Martín Fernández" />
     <meta name="description" content="Página web sobre Caravia" />
     <title>Caravia</title>
-    <link rel="stylesheet" type="text/css" href="styles/estilo.css">
-    <link rel="stylesheet" type="text/css" href="styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css">
 </head>
 
 <body>
     <header>
         <h1>Página web de Caravia</h1>
     </header>
-    <nav>
-        <a href="index.html" accesskey="I" tabindex="1">
-            Página principal
-        </a>
-
-        <a href="historia.html" accesskey="H" tabindex="2">
-            Historia
-        </a>
-
-        <a href="versiones.html" accesskey="V" tabindex="3">
-            Versiones
-        </a>
-
-        <a href="contacto.html" accesskey="C" tabindex="4">
-            Contacto
-        </a>
-    </nav>
     <main>
         <h1>Gastronomía de Caravia</h1>
         <!-- Lista ordenada con al menos 3 elementos - tienen listas anidadas -->
@@ -135,15 +118,18 @@
         <section>
             <h2>Audio de Caravia</h2>
             <p>Es un Audio de Caravia</p>
-            <audio src="multimedia/audio/caravia.mp3" controls ></audio>   
+            <audio controls>
+                <source src="multimedia/audio/caravia.mp3" type="audio/mp3" />
+            </audio>
         </section>
 
         <!-- Video -->
         <section>
             <h2>Video de Caravia</h2>
             <p>Es un video de caravia</p>
-            <video src="multimedia/videos/caravia.mp4"controls preload="auto">
-            </video>  
+            <video controls preload="auto">
+                <source src="multimedia/videos/caravia.mp4" type="video/.mp4">
+            </video>
         </section>
 
     </main>
