@@ -1,23 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rutas SYSTEM "rutas.dtd">
 <rutas>
-<ruta>
-    <nombre_ruta>Ruta de la playa</nombre_ruta>
-    <tipo_ruta>Caminata</tipo_ruta>
-    <transporte>A pie</transporte>
-    <fecha_inicio>2023-07-12</fecha_inicio>
-    <hora_inicio>15</hora_inicio>
-    <duracion>2 horas</duracion>
-    <agencia>Sin agencia</agencia>
-    <descripcion>Paseo por la playa</descripcion>
-</ruta>
+    <ruta>
+        <nombre_ruta>Ruta de la playa</nombre_ruta>
+        <tipo_ruta>Caminata</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-07-12</fecha_inicio>
+        <hora_inicio>15</hora_inicio>
+        <duracion>2 horas</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Paseo por la playa</descripcion>
+        <personas_adecuadas>Personas con capacidad física media</personas_adecuadas>
+        <lugar_inicio>Playa</lugar_inicio>
+        <direccion_inicio>Norte</direccion_inicio>
+        <coordenadas>
+            <longitud>-5.1878200</longitud>
+            <latitud>43.4672200</latitud>
+            <altitud>10</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.aytocaravia.com/</referencia>
+            <referencia>https://www.turismoasturias.es/descubre/donde-ir/municipios/caravia</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Caravia</referencia>
+        </referencias>
+        <recomendacion> </recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
 
+        </hitos>
+    </ruta>
+    <ruta>
+        <nombre_ruta>Ruta de la playa</nombre_ruta>
+        <tipo_ruta>Caminata</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-07-12</fecha_inicio>
+        <hora_inicio>15</hora_inicio>
+        <duracion>2 horas</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Paseo por la playa</descripcion>
+        <personas_adecuadas>Personas con capacidad física media</personas_adecuadas>
+        <lugar_inicio>Playa</lugar_inicio>
+        <direccion_inicio>Norte</direccion_inicio>
+        <coordenadas>
+            <longitud>-5.1878200</longitud>
+            <latitud>43.4672200</latitud>
+            <altitud>10</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.aytocaravia.com/</referencia>
+            <referencia>https://www.turismoasturias.es/descubre/donde-ir/municipios/caravia</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Caravia</referencia>
+        </referencias>
+        <recomendacion> </recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
 
+        </hitos>
+    </ruta>
+    <ruta>
+        <nombre_ruta>Ruta de la playa</nombre_ruta>
+        <tipo_ruta>Caminata</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-07-12</fecha_inicio>
+        <hora_inicio>15</hora_inicio>
+        <duracion>2 horas</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Paseo por la playa</descripcion>
+        <personas_adecuadas>Personas con capacidad física media</personas_adecuadas>
+        <lugar_inicio>Playa</lugar_inicio>
+        <direccion_inicio>Norte</direccion_inicio>
+        <coordenadas>
+            <longitud>-5.1878200</longitud>
+            <latitud>43.4672200</latitud>
+            <altitud>10</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.aytocaravia.com/</referencia>
+            <referencia>https://www.turismoasturias.es/descubre/donde-ir/municipios/caravia</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Caravia</referencia>
+        </referencias>
+        <recomendacion> </recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1878200</longitud>
+                    <latitud>43.4672200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
 
-
-
-
-
-<ruta></ruta>
-<ruta></ruta>
+        </hitos>
+    </ruta>
 </rutas>

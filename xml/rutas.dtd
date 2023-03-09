@@ -27,7 +27,8 @@
 <!ELEMENT recomendacion (#PCDATA)>
 
 <!-- hitos -->
-<!ELEMENT hitos (nombre_hito, descripcion_hito, coordenadas_hito, distancia_hito, galeria_fotos, galeria_videos)>
+<!ELEMENT hitos (hito,hito,hito+)>
+<!ELEMENT hito (nombre_hito, descripcion_hito, coordenadas_hito, distancia_hito, galeria_fotos, galeria_videos)>
 <!ELEMENT nombre_hito (#PCDATA)>
 <!ELEMENT descripcion_hito (#PCDATA)>
 <!ELEMENT coordenadas_hito (longitud, latitud, altitud)>
@@ -36,3 +37,6 @@
 <!ELEMENT foto (#PCDATA)>
 <!ELEMENT galeria_videos (video?,video?,video?)>
 <!ELEMENT video (#PCDATA)>
+
+<!ATTLIST distancia_hito
+	distancia CDATA #REQUIRED>
