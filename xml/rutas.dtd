@@ -1,5 +1,5 @@
 <!ELEMENT rutas (ruta, ruta, ruta+)>
-<!ELEMENT ruta (nombre_ruta, tipo_ruta, transporte, (fecha_inicio)?, (hora_inicio)?, duracion, agencia, descripcion, personas_adecuadas, lugar_inicio, direccion_inicio, coordenadas, referencias, recomendacion, hitos)>
+<!ELEMENT ruta (nombre_ruta, tipo_ruta, transporte, (fecha_inicio)?, (hora_inicio)?, duracion, agencia, descripcion, personas_adecuadas, lugar_inicio, direccion_inicio, coordenadas, referencias, recomendacion, hitos, planimetria, altimetria)>
 
 <!ELEMENT nombre_ruta (#PCDATA)>
 <!ELEMENT tipo_ruta (#PCDATA)>
@@ -40,3 +40,7 @@
 
 <!ATTLIST distancia_hito
 	distancia CDATA #REQUIRED>
+
+
+<!ELEMENT planimetria (#PCDATA)>
+<!ELEMENT altimetria (#PCDATA)>

@@ -36,7 +36,7 @@ nav > a{
 
 /*Especificidad : 012*/
 nav > a:hover {
-    color: #1fbbb3;
+    color: lightblue;
     background-color: black;
 }
 
@@ -61,6 +61,20 @@ table{
 ol{
     list-style-type: upper-roman;
 }
+
+/*Especificidad: 001*/
+ul {
+    padding: 1.2em;
+}
+
+/*Especificidad: 001*/
+li {
+    background-color: white;
+    padding: 1em;
+}
+
+
+
 
 /*-------------------- Formulario --------------*/
 /*Especificidad : 001*/

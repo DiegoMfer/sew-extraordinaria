@@ -84,6 +84,8 @@
             </hito>
 
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
     <ruta>
         <nombre_ruta>Ruta de la playa</nombre_ruta>
@@ -168,6 +170,8 @@
             </hito>
 
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
     <ruta>
         <nombre_ruta>Ruta de la playa</nombre_ruta>
@@ -242,9 +246,6 @@
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
                     <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
                     <video>caravia.mp4</video>
@@ -252,5 +253,7 @@
             </hito>
 
         </hitos>
+        <planimetria></planimetria>
+        <altimetria></altimetria>
     </ruta>
 </rutas>
