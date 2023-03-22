@@ -96,13 +96,15 @@ class Rutas {
                         //---------------------- galeria fotos -------------------
                         $("main li:last").append("<p> Fotos hito </p>");
                         $(this).find('galeria_fotos foto').each(function(){
-                            $("main li:last").append("<p> Foto: " + $(this).text() + " </p>");
+                            $("main li:last").append("<p> Foto: </p>");
+                            $("main li:last").append("<img src=\"" + $(this).text() +"\"  alt=\" imagen de la ruta \" />");
                         });
 
                         //---------------------- galeria videos -------------------
                         $("main li:last").append("<p> Videos hito </p>");
                         $(this).find('galeria_videos video').each(function(){
-                            $("main li:last").append("<p> Video: " + $(this).text() + " </p>");
+                            $("main li:last").append("<p> Video: </p>");
+                            $("main li:last").append("<img src=\"" + $(this).text() +"\"  alt=\" video de la ruta \" />");
                         });
 
                         

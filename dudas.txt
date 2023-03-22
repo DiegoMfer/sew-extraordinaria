@@ -1,2 +1,2 @@
 1. A la hora de ejecutar el js de rutas.html ¿está bien hecho?
-2.
+2. Para la realización del index.html en el carrusel estoy usando jquery ¿se puede?
