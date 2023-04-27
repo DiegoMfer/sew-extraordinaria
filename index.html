@@ -11,6 +11,8 @@
     <title>Caravia</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <script src="js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -46,9 +48,16 @@
         <h1>Inicio</h1>
         <section>
             <h2>Carrusel de fotos</h2>
-            <img src="multimedia/images/caravia.jpg" alt="Imagen de Caravia" />    
+            <img src="multimedia/images/caravia.jpg" alt="Imagen de Caravia" /> 
+            <button type="button" onclick="index.anterior();">Anterior</button>
+            <button type="button" onclick="index.siguiente();">Siguiente</button>   
         </section>
   
+        <h1>Datos meteorológicos de Caravia</h1>
+        <section>
+            <h2>Botón:</h2>
+            <button onclick="index.cargarDatosMeteorológicos();">Cargar datos Meteorológicos</button>
+        </section>
     </main>
 
     <footer>

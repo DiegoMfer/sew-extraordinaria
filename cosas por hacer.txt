@@ -1,0 +1,10 @@
+validar css
+validar html
+Utilización de elementos para dotar de estructura semántica a los contenidos.
+xml entero -----------
+
+----------------------
+
+ecmascript -----------
+carrusel de fotos - mejorar botones
+----------------------
