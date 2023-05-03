@@ -6,7 +6,6 @@ class Index {
         this.textoImagen = 'Imagen de Caravia'
         this.index = 0
         this.key = "c4ed265dd950cde9fc4d2b46bf0ee682";
-        
     }
 
     anterior(){
@@ -25,7 +24,29 @@ class Index {
         $("img").attr("src","multimedia/images/" + this.carrusel[this.index]);
     }
 
-  
+    cargarNoticias(){
+      
+        var settings = {
+            "url": "https://api.newscatcherapi.com/v2/search?q=Caravia",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+              "x-api-key": "50Wka5hGVBCRFIwndVaLoCzV479JbJ2w77RDCiQ_2i4"
+            },
+          };
+          
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+            var datos = "<p> Título: " + response["articles"][0]["title"] + "</p>"
+            datos += "<p> Resumen: " + response["articles"][0]["summary"] + "</p>"
+            datos += "<p> ------------------------------------------------ </p>"
+            datos += "<p> Título: " + response["articles"][1]["title"] + "</p>"
+            datos += "<p> Resumen: " + response["articles"][1]["summary"] + "</p>"
+
+            $("main section:eq(3)").append(datos)
+            $("main section:eq(3) button").attr("disabled","disabled");
+          });
+    }
     
     cargarDatosMeteorológicos() {
 
@@ -63,6 +84,7 @@ class Index {
     
              $("main section:eq(1)").append(meteo)
              $("main section:eq(1) button").attr("disabled","disabled");
+            
         });
     
         
