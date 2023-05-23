@@ -85,12 +85,45 @@ class Index {
              $("main section:eq(1)").append(meteo)
              $("main section:eq(1) button").attr("disabled","disabled");
             
-        });
-    
-        
-      }
-    
-    
+        });   
+    }
+
+    ultimaVezActualizado(){
+      $("main section:eq(6)").append("<p>"+ document.lastModified+"</p>")
+      console.log("aaa")
+    }
+
+
 }
+
+class MapaDinamicoGoogle {
+  initMap(){  
+      var centro = {lat: 43.4676, lng: -5.19014};
+      var mapaGeoposicionado = new google.maps.Map(document.getElementsByName('map')[0],{
+          zoom: 14,
+          center:centro,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      
+      
+
+      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+  }
+
+  handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ?
+                            'Error: Ha fallado la geolocalización' :
+                            'Error: Su navegador no soporta geolocalización');
+      infoWindow.open(mapaGeoposicionado);
+  }
+}
+
+var mapaDinamicoGoogle = new MapaDinamicoGoogle();
+
+
 
 var index = new Index();
