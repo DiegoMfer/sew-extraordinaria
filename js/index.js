@@ -13,7 +13,7 @@ class Index {
         if(this.index == -1){
             this.index = 4;
         }
-        $("img").attr("src","multimedia/images/" + this.carrusel[this.index]);
+        $('img[name="carrusel"]').attr("src","multimedia/images/" + this.carrusel[this.index]);
     }
 
     siguiente(){
@@ -21,7 +21,7 @@ class Index {
         if(this.index >= 5){
             this.index = 0;
         }
-        $("img").attr("src","multimedia/images/" + this.carrusel[this.index]);
+        $('img[name="carrusel"]').attr("src","multimedia/images/" + this.carrusel[this.index]);
     }
 
     cargarNoticias(){
@@ -43,8 +43,8 @@ class Index {
             datos += "<p> Título: " + response["articles"][1]["title"] + "</p>"
             datos += "<p> Resumen: " + response["articles"][1]["summary"] + "</p>"
 
-            $("main section:eq(3)").append(datos)
-            $("main section:eq(3) button").attr("disabled","disabled");
+            $("main section:eq(2)").append(datos)
+            $("main section:eq(2) button").attr("disabled","disabled");
           });
     }
     
@@ -89,7 +89,7 @@ class Index {
     }
 
     ultimaVezActualizado(){
-      $("main section:eq(6)").append("<p>"+ document.lastModified+"</p>")
+      $("main section:eq(5)").append("<p>"+ document.lastModified+"</p>")
       console.log("aaa")
     }
 
@@ -107,10 +107,11 @@ class MapaDinamicoGoogle {
       
       
 
-      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(5)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
   }
 
   handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -123,7 +124,4 @@ class MapaDinamicoGoogle {
 }
 
 var mapaDinamicoGoogle = new MapaDinamicoGoogle();
-
-
-
 var index = new Index();

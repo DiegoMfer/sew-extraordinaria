@@ -5,17 +5,17 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial scale=1.0" />
-    <meta name="keywords" content="rutas" />
+    <meta name="keywords" content="juego" />
     <meta name="author" content="Diego Martín Fernández" />
-    <meta name="description" content="Rutas" />
+    <meta name="description" content="Juego" />
     <title>Rutas</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/rutas.js"></script>
+    <script src="js/juego.js"></script>
 </head>
 
-<body onload="rutas.load();">
+<body>
     <header>
         <h1>Página web de Caravia</h1>
     </header>
@@ -45,7 +45,25 @@
         </a>
     </nav>
     <main>
-        
+        <h1>Juego</h1>
+        <section>
+            <fieldset>
+                <legend>Caravia está en:</legend>
+
+                <p><label for="pregunta11">Asturias</label></p>
+                <input type="radio" name="error_radio_button" id="pregunta11" value="asturias">
+
+                <p><label for="info_incorrecta">Información incorrecta</label></p>
+                <input type="radio" name="error_radio_button" id="info_incorrecta" value="Información_incorrecta">
+
+                <p><label for="error_adaptabilidad">Error de adaptabilidad</label></p>
+                <input type="radio" name="error_radio_button" id="error_adaptabilidad" value="Error_de_adaptabilidad">
+
+                <p><label for="otro">Otro</label></p>
+                <input type="radio" name="error_radio_button" id="otro" value="Otro">
+
+            </fieldset>
+        </section>
     </main>
 </body>
 

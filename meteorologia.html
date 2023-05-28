@@ -5,17 +5,17 @@
     <!-- Datos que describen el documento -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial scale=1.0" />
-    <meta name="keywords" content="rutas" />
+    <meta name="keywords" content="meteo" />
     <meta name="author" content="Diego Martín Fernández" />
-    <meta name="description" content="Rutas" />
+    <meta name="description" content="Meteorología" />
     <title>Rutas</title>
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/rutas.js"></script>
+    <script src="js/meteorologia.js"></script>
 </head>
 
-<body onload="rutas.load();">
+<body>
     <header>
         <h1>Página web de Caravia</h1>
     </header>
@@ -45,7 +45,11 @@
         </a>
     </nav>
     <main>
-        
+        <h1>Sección del tiempo</h1>
+        <section>
+            <h2>Botón para cargar el tiempo en los próximos 7 días en Caravia:</h2>
+            <button onclick="meteo.cargarTiempo();">Cargar tiempo</button>
+        </section>
     </main>
 </body>
 

@@ -1,2 +1,3 @@
 1. A la hora de ejecutar el js de rutas.html ¿está bien hecho?
 2. Para la realización del index.html en el carrusel estoy usando jquery ¿se puede?
+3. Se puede hacer esto? $('img[name="carrusel"]').attr("src","multimedia/images/" + this.carrusel[this.index]);
