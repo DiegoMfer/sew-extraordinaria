@@ -90,7 +90,6 @@ class Index {
 
     ultimaVezActualizado(){
       $("main section:eq(5)").append("<p>"+ document.lastModified+"</p>")
-      console.log("aaa")
     }
 
 
