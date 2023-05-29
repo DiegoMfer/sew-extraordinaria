@@ -84,8 +84,8 @@
             </hito>
 
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>aa</planimetria>
+        <altimetria>aa</altimetria>
     </ruta>
     <ruta>
         <nombre_ruta>Ruta de la playa</nombre_ruta>
