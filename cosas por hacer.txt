@@ -1,10 +1,6 @@
-validar css
-validar html
-Utilización de elementos para dotar de estructura semántica a los contenidos.
-xml entero -----------
-
-----------------------
-
-ecmascript -----------
-carrusel de fotos - mejorar botones
-----------------------
+rutas todas con el mismo nombre
+nombres de los archivos de planimetria y altimetria
+validar css y html
+adaptabilidad y accesibilidad
+bitacora
+desplegar

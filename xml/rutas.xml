@@ -88,7 +88,7 @@
         <altimetria>aa</altimetria>
     </ruta>
     <ruta>
-        <nombre_ruta>Ruta de la playa</nombre_ruta>
+        <nombre_ruta>Ruta de la playa 2</nombre_ruta>
         <tipo_ruta>Caminata</tipo_ruta>
         <transporte>A pie</transporte>
         <fecha_inicio>2023-07-12</fecha_inicio>
@@ -170,11 +170,11 @@
             </hito>
 
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>rutaPlaya.kml</planimetria>
+        <altimetria>rutaPlaya.svg</altimetria>
     </ruta>
     <ruta>
-        <nombre_ruta>Ruta de la playa</nombre_ruta>
+        <nombre_ruta>Ruta de la playa 3</nombre_ruta>
         <tipo_ruta>Caminata</tipo_ruta>
         <transporte>A pie</transporte>
         <fecha_inicio>2023-07-12</fecha_inicio>
