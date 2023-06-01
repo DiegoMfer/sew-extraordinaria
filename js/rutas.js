@@ -260,10 +260,6 @@ class Rutas {
 
   generateSVG() {
     $(document).ready(function () {
-      parseXMLToSVG("xml/rutas.xml", "#svg-container");
-    });
-
-    $(document).ready(function () {
       parseXMLToSVG("xml/rutas.xml", "#svg-container", "tree.svg");
     });
   }
