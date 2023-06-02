@@ -258,73 +258,26 @@ class Rutas {
     });
   }
 
-  generateSVG() {
-    $(document).ready(function () {
-      parseXMLToSVG("xml/rutas.xml", "#svg-container", "tree.svg");
-    });
+
+  obtenerAltura(longitud, latitud) {
+    var apiUrl = `https://nationalmap.gov/epqs/pqs.php?x=${longitud}&y=${latitud}&units=Meters&output=json`;
+  
+    fetch(apiUrl)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        var elevation = data.USGS_Elevation_Point_Query_Service.Elevation_Query.Elevation;
+        console.log("Altura: " + elevation + " metros");
+      })
+      .catch(function(error) {
+        console.log("Error al obtener la altura: " + error);
+      });
   }
+  
 
-  parseXMLToSVG(xmlFile, svgContainer, downloadFileName) {
-    $.ajax({
-      type: "GET",
-      url: xmlFile,
-      dataType: "xml",
-      success: function (xml) {
-        var $svg = $(svgContainer);
-        $svg.empty();
-
-        function createNode(element, x, y, level) {
-          var $g = $("<g>");
-          var $text = $("<text>")
-            .attr("x", x)
-            .attr("y", y)
-            .text(element.tagName);
-
-          $g.append($text);
-
-          var children = $(element).children();
-          if (children.length > 0) {
-            var startX = x - 100;
-            var startY = y + 50;
-
-            for (var i = 0; i < children.length; i++) {
-              var child = children[i];
-              var childX = startX + i * 200;
-              var childY = startY + level * 100;
-
-              var $line = $("<line>")
-                .attr("x1", x)
-                .attr("y1", y)
-                .attr("x2", childX)
-                .attr("y2", childY);
-
-              $g.append($line);
-              $g.append(createNode(child, childX, childY, level + 1));
-            }
-          }
-
-          return $g;
-        }
-
-        var root = $(xml).children().first();
-        $svg.append(createNode(root[0], 400, 50, 1));
-
-        var svgString = $svg.prop("outerHTML");
-        var link = document.createElement("a");
-        link.setAttribute(
-          "href",
-          "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString)
-        );
-        link.setAttribute("download", downloadFileName);
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      },
-      error: function () {
-        console.log("Failed to load XML file.");
-      },
-    });
+  generateSVG() {
+    obtenerAltura(-5,43)
   }
 }
 
