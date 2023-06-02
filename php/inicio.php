@@ -3,15 +3,43 @@
 class RecursoTuristico
 {
     private $nombre;
+    private $tipo;
+    private $precio;
+    private $limiteOcupacion;
+    private $descripcion;
 
-    public function __construct($nombre)
+    public function __construct($nombre, $tipo, $precio, $limiteOcupacion, $descripcion)
     {
         $this->nombre = $nombre;
+        $this->tipo = $tipo;
+        $this->precio = $precio;
+        $this->limiteOcupacion = $limiteOcupacion;
+        $this->descripcion = $descripcion;
     }
 
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    public function getLimiteOcupacion()
+    {
+        return $this->limiteOcupacion;
+    }
+
+    public function getDescripcion()
+    {
+        return $this->descripcion;
     }
 }
 
@@ -53,11 +81,23 @@ class Lista
 
     public function __construct()
     {
-        $this->recursos = [
-            new RecursoTuristico("Playa"),
-            new RecursoTuristico("Montaña"),
-            new RecursoTuristico("Museo"),
-        ];
+        // Conexión a la base de datos
+        $conexion = new PDO("mysql:host=localhost;dbname=sew", "test", "test");
+
+        // Consulta para obtener los recursos turísticos
+        $consulta = $conexion->query("SELECT * FROM Recursoturistico");
+
+        // Crear array de recursos turísticos
+        $this->recursos = [];
+        while ($fila = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $fila['nombreRecurso'];
+            $tipo = $fila['tipo'];
+            $precio = $fila['precio'];
+            $limiteOcupacion = $fila['limiteOcupacion'];
+            $descripcion = $fila['descripcion'];
+            $recurso = new RecursoTuristico($nombre, $tipo, $precio, $limiteOcupacion, $descripcion);
+            $this->recursos[] = $recurso;
+        }
 
         $this->recursoSeleccionado = null;
         $this->reservas = [];
@@ -76,11 +116,6 @@ class Lista
             $reserva = new Reserva($nombre, $nombreRecurso, $fecha);
             $this->reservas[] = $reserva;
         }
-
-        // Ejemplo de reserva predefinida
-        $ejemploRecurso = new RecursoTuristico("Ejemplo");
-        $ejemploReserva = new Reserva("Juan Pérez", $ejemploRecurso->getNombre(), "2023-06-01");
-        $this->reservas[] = $ejemploReserva;
     }
 
     public function getRecursos()
@@ -165,6 +200,10 @@ $lista = new Lista();
             <section>
                 <h2>Información del Recurso Turístico</h2>
                 <p>Nombre: <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?></p>
+                <p>Tipo: <?php echo $lista->getRecursoSeleccionado()->getTipo(); ?></p>
+                <p>Precio: <?php echo $lista->getRecursoSeleccionado()->getPrecio(); ?></p>
+                <p>Límite de ocupación: <?php echo $lista->getRecursoSeleccionado()->getLimiteOcupacion(); ?></p>
+                <p>Descripción: <?php echo $lista->getRecursoSeleccionado()->getDescripcion(); ?></p>
             </section>
 
             <?php if ($lista->getReservas()): ?>

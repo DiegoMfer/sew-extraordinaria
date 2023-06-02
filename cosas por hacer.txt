@@ -4,3 +4,4 @@ validar css y html
 adaptabilidad y accesibilidad
 bitacora
 desplegar
+cambiar el mapa dinámico a estático
