@@ -1,13 +1,36 @@
+-- La base de datos está hecha con xampp mysql, su nombre es sew y para conectarse el usuario y contraseña es test test
+
 CREATE TABLE Recursoturistico (
-  id INT PRIMARY KEY,
-  nombreRecurso VARCHAR(255),
+  id INT,
+  nombreRecurso VARCHAR(255) PRIMARY KEY,
   tipo VARCHAR(100),
   precio DECIMAL(10, 2),
   limiteOcupacion INT,
   descripcion TEXT
 );
 
-INSERT INTO Recursoturistico (id, nombreRecurso, tipo, precio, limiteOcupacion, descripcion)
+CREATE TABLE usuarios (
+  nombre VARCHAR(255) PRIMARY KEY,
+  contrasena VARCHAR(255)
+);
+
+
+CREATE TABLE reserva (
+  id_reserva INT PRIMARY KEY,
+  nombreRecurso VARCHAR(255),
+  nombre_usuario VARCHAR(255),
+  fecha_reserva DATE,
+  FOREIGN KEY (nombreRecurso) REFERENCES Recursoturistico(nombreRecurso),
+  FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre)
+);
+
+-- Insertamos los datos
+INSERT INTO usuarios (nombre, contrasena)
+VALUES
+  ('usuario', 'contraseña'),
+  ('usuario2', 'contraseña2');
+
+INSERT INTO Recursoturistico (nombreRecurso, tipo, precio, limiteOcupacion, descripcion)
 VALUES
   (1, 'Playa de Arena Blanca', 'Playa', 10.50, 500, 'Hermosa playa con aguas cristalinas y arena fina.'),
   (2, 'Cascada del Bosque Verde', 'Aventura', 25.00, 100, 'Excursión a una cascada en medio de un frondoso bosque.'),
@@ -21,12 +44,10 @@ VALUES
   (10, 'Ruta del Vino', 'Enoturismo', 12.00, 100, 'Visita a viñedos y bodegas para degustar vinos de la región.');
 
 
-CREATE TABLE usuarios (
-  nombre VARCHAR(255) PRIMARY KEY,
-  contrasena VARCHAR(255)
-);
-
-INSERT INTO usuarios (nombre, contrasena)
+  INSERT INTO reserva (id_reserva, nombreRecurso, nombre_usuario, fecha_reserva)
 VALUES
-  ('usuario', 'contraseña'),
-  ('usuario2', 'contraseña2');
+  (1, 'Playa de Arena Blanca', 'usuario', '2023-06-01'),
+  (2, 'Cascada del Bosque Verde', 'usuario', '2023-06-02'),
+  (3, 'Museo Histórico', 'usuario', '2023-06-03'),
+  (4, 'Recorrido en Bicicleta', 'usuario', '2023-06-04'),
+  (5, 'Hotel Playa Dorada', 'usuario', '2023-06-05');

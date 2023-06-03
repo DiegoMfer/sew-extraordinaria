@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class LoginForm
 {
     private $username;
@@ -16,8 +18,28 @@ class LoginForm
             $this->username = $_POST["username"];
             $this->password = $_POST["password"];
 
-            if ($this->username === "usuario" && $this->password === "contraseña") {
-                // Las credenciales son válidas, redireccionar a la página de inicio
+            // Conexión a la base de datos
+            $servername = "localhost";
+            $username = "test";
+            $password = "test";
+            $dbname = "sew";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Comprobar la conexión
+            if ($conn->connect_error) {
+                die("Error de conexión a la base de datos: " . $conn->connect_error);
+            }
+
+            // Consulta SQL para verificar el usuario y la contraseña
+            $sql = "SELECT * FROM usuarios WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows == 1) {
+                // Las credenciales son válidas, guardar el nombre de usuario en la sesión
+                $_SESSION['username'] = $this->username;
+
+                // Redireccionar a la página de inicio
                 header("Location: inicio.php");
                 exit();
             } else {
@@ -25,6 +47,8 @@ class LoginForm
                 $this->error = "Usuario o contraseña incorrectos";
                 $this->logError($this->error);
             }
+
+            $conn->close();
         }
     }
 

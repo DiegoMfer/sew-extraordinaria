@@ -82,7 +82,7 @@ class Rutas {
               .each(function () {
                 let refernecia = $(this).text();
                 $("main section:last").append(
-                  "<p> Refernecia: " + refernecia + "</p>"
+                  "<p> Referencia: " + refernecia + "</p>"
                 );
               });
             //----------------------- recomendacion ----------------------

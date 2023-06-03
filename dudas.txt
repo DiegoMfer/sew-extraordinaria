@@ -13,3 +13,4 @@
 8. Es necesario en index.html es necesario cargar todo o se puede hacer mediante botones (rutas también)
 9. El php esta bien así?
 10. Google maps está bien hecho?
+11. Se pueden usar <br>?

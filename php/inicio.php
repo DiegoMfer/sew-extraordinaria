@@ -1,5 +1,6 @@
 <?php
 
+
 class RecursoTuristico
 {
     private $nombre;
@@ -86,6 +87,19 @@ class Lista
 
         // Consulta para obtener los recursos turísticos
         $consulta = $conexion->query("SELECT * FROM Recursoturistico");
+
+
+        $consultaReservas = $conexion->query("SELECT * FROM Reserva");
+
+        // Crear array de reservas
+        $this->reservas = [];
+        while ($fila = $consultaReservas->fetch(PDO::FETCH_ASSOC)) {
+            $nombreRecurso = $fila['nombreRecurso'];
+            $nombreUsuario = $fila['nombre_usuario'];
+            $fechaReserva = $fila['fecha_reserva'];
+            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva);
+            $this->reservas[] = $reserva;
+        }
 
         // Crear array de recursos turísticos
         $this->recursos = [];
@@ -199,12 +213,24 @@ $lista = new Lista();
         <?php if ($lista->getRecursoSeleccionado()): ?>
             <section>
                 <h2>Información del Recurso Turístico</h2>
-                <p>Nombre: <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?></p>
-                <p>Tipo: <?php echo $lista->getRecursoSeleccionado()->getTipo(); ?></p>
-                <p>Precio: <?php echo $lista->getRecursoSeleccionado()->getPrecio(); ?></p>
-                <p>Límite de ocupación: <?php echo $lista->getRecursoSeleccionado()->getLimiteOcupacion(); ?></p>
-                <p>Descripción: <?php echo $lista->getRecursoSeleccionado()->getDescripcion(); ?></p>
+                <p>Nombre:
+                    <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>
+                </p>
+                <p>Tipo:
+                    <?php echo $lista->getRecursoSeleccionado()->getTipo(); ?>
+                </p>
+                <p>Precio:
+                    <?php echo $lista->getRecursoSeleccionado()->getPrecio(); ?>
+                </p>
+                <p>Límite de ocupación:
+                    <?php echo $lista->getRecursoSeleccionado()->getLimiteOcupacion(); ?>
+                </p>
+                <p>Descripción:
+                    <?php echo $lista->getRecursoSeleccionado()->getDescripcion(); ?>
+                </p>
             </section>
+
+          
 
             <?php if ($lista->getReservas()): ?>
                 <section>
@@ -212,9 +238,15 @@ $lista = new Lista();
                     <ul>
                         <?php foreach ($lista->getReservas() as $reserva): ?>
                             <li>
-                                <p>Recurso: <?php echo $reserva->getNombreRecurso(); ?></p>
-                                <p>Nombre: <?php echo $reserva->getNombre(); ?></p>
-                                <p>Fecha: <?php echo $reserva->getFecha(); ?></p>
+                                <p>Recurso:
+                                    <?php echo $reserva->getNombreRecurso(); ?>
+                                </p>
+                                <p>Nombre:
+                                    <?php echo $reserva->getNombre(); ?>
+                                </p>
+                                <p>Fecha:
+                                    <?php echo $reserva->getFecha(); ?>
+                                </p>
                             </li>
                         <?php endforeach; ?>
                     </ul>
