@@ -1,6 +1,5 @@
 <?php
 
-
 class RecursoTuristico
 {
     private $nombre;
@@ -50,11 +49,14 @@ class Reserva
     private $nombreRecurso;
     private $fecha;
 
-    public function __construct($nombre, $nombreRecurso, $fecha)
+    private $plazasReservadas;
+
+    public function __construct($nombre, $nombreRecurso, $fecha, $plazasReservadas)
     {
         $this->nombre = $nombre;
         $this->nombreRecurso = $nombreRecurso;
         $this->fecha = $fecha;
+        $this->plazasReservadas = $plazasReservadas;
     }
 
     public function getNombre()
@@ -70,6 +72,11 @@ class Reserva
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    public function getPlazasReservadas()
+    {
+        return $this->plazasReservadas;
     }
 }
 
@@ -88,18 +95,8 @@ class Lista
         // Consulta para obtener los recursos turísticos
         $consulta = $conexion->query("SELECT * FROM Recursoturistico");
 
-
+        // Consulta para obtener las reservas
         $consultaReservas = $conexion->query("SELECT * FROM Reserva");
-
-        // Crear array de reservas
-        $this->reservas = [];
-        while ($fila = $consultaReservas->fetch(PDO::FETCH_ASSOC)) {
-            $nombreRecurso = $fila['nombreRecurso'];
-            $nombreUsuario = $fila['nombre_usuario'];
-            $fechaReserva = $fila['fecha_reserva'];
-            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva);
-            $this->reservas[] = $reserva;
-        }
 
         // Crear array de recursos turísticos
         $this->recursos = [];
@@ -114,7 +111,16 @@ class Lista
         }
 
         $this->recursoSeleccionado = null;
-        $this->reservas = [];
+
+        $this->reservas = [new Reserva("test", "Recorrido en Bicicleta", "test", 0)];
+        while ($fila = $consultaReservas->fetch(PDO::FETCH_ASSOC)) {
+            $nombreRecurso = $fila['nombre_recurso'];
+            $nombreUsuario = $fila['nombre_usuario'];
+            $fecha = $fila['fecha_reserva'];
+            $plazasReservadas = $fila['plazas_reservadas'];
+            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fecha, $plazasReservadas);
+            $this->reservas[] = $reserva;
+        }
 
         if (isset($_POST['recurso'])) {
             $indice = $_POST['recurso'];
@@ -123,13 +129,11 @@ class Lista
             }
         }
 
-        if (isset($_POST['nombre']) && isset($_POST['fecha']) && $this->recursoSeleccionado) {
-            $nombre = $_POST['nombre'];
-            $nombreRecurso = $this->recursoSeleccionado->getNombre();
-            $fecha = $_POST['fecha'];
-            $reserva = new Reserva($nombre, $nombreRecurso, $fecha);
-            $this->reservas[] = $reserva;
+
+        if (isset($_POST['fecha']) && $this->recursoSeleccionado) {
+          //Añade el código para agregar una entidad a la tabla reservas aqui
         }
+
     }
 
     public function getRecursos()
@@ -230,43 +234,59 @@ $lista = new Lista();
                 </p>
             </section>
 
-          
-
             <?php if ($lista->getReservas()): ?>
                 <section>
-                    <h2>Reservas realizadas</h2>
-                    <ul>
-                        <?php foreach ($lista->getReservas() as $reserva): ?>
-                            <li>
-                                <p>Recurso:
-                                    <?php echo $reserva->getNombreRecurso(); ?>
-                                </p>
-                                <p>Nombre:
-                                    <?php echo $reserva->getNombre(); ?>
-                                </p>
-                                <p>Fecha:
-                                    <?php echo $reserva->getFecha(); ?>
-                                </p>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <h2>Reservas realizadas para el recurso seleccionado</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Plazas reservadas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($lista->getReservas() as $reserva): ?>
+                                <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $reserva->getNombre(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $reserva->getFecha(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $reserva->getPlazasReservadas(); ?>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </section>
-            <?php else: ?>
+            <?php endif; ?>
+
+            <?php if ($lista->getRecursoSeleccionado()): ?>
                 <section>
-                    <h2>Realizar reserva</h2>
+                    <h2>Reservar Recurso Turístico -
+                        <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>
+                    </h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre">
-                        <br>
+                        <input type="hidden" name="recurso"
+                            value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
                         <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha">
-                        <br>
+                        <input type="date" name="fecha" required>
+                        <label for="plazas">Plazas a reservar:</label>
+                        <input type="number" name="plazas" min="1" required>
                         <input type="submit" value="Reservar">
                     </form>
                 </section>
             <?php endif; ?>
         <?php endif; ?>
     </main>
+    <footer>
+        <p>Proyecto creado por Diego Martín Fernández</p>
+    </footer>
 </body>
 
 </html>

@@ -17,12 +17,14 @@ CREATE TABLE usuarios (
 
 CREATE TABLE reserva (
   id_reserva INT PRIMARY KEY,
-  nombreRecurso VARCHAR(255),
+  nombre_recurso VARCHAR(255),
   nombre_usuario VARCHAR(255),
   fecha_reserva DATE,
-  FOREIGN KEY (nombreRecurso) REFERENCES Recursoturistico(nombreRecurso),
+  plazas_reservadas INT,
+  FOREIGN KEY (nombre_recurso) REFERENCES Recursoturistico(nombreRecurso),
   FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre)
 );
+
 
 -- Insertamos los datos
 INSERT INTO usuarios (nombre, contrasena)
@@ -44,10 +46,10 @@ VALUES
   (10, 'Ruta del Vino', 'Enoturismo', 12.00, 100, 'Visita a viñedos y bodegas para degustar vinos de la región.');
 
 
-  INSERT INTO reserva (id_reserva, nombreRecurso, nombre_usuario, fecha_reserva)
+  INSERT INTO reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva,plazas_reservadas)
 VALUES
-  (1, 'Playa de Arena Blanca', 'usuario', '2023-06-01'),
-  (2, 'Cascada del Bosque Verde', 'usuario', '2023-06-02'),
-  (3, 'Museo Histórico', 'usuario', '2023-06-03'),
-  (4, 'Recorrido en Bicicleta', 'usuario', '2023-06-04'),
-  (5, 'Hotel Playa Dorada', 'usuario', '2023-06-05');
+  (1, 'Playa de Arena Blanca', 'usuario', '2023-06-01',0),
+  (2, 'Cascada del Bosque Verde', 'usuario', '2023-06-02',0),
+  (3, 'Museo Histórico', 'usuario', '2023-06-03',0),
+  (4, 'Recorrido en Bicicleta', 'usuario', '2023-06-04',0),
+  (5, 'Hotel Playa Dorada', 'usuario', '2023-06-05',0);
