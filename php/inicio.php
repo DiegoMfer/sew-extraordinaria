@@ -1,5 +1,41 @@
 <?php
+class Usuario
+{
+    private $nombre;
+    private $reservas;
 
+    public function __construct($nombre)
+    {
+        $this->nombre = $nombre;
+        $this->reservas = [];
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function addReserva($reserva)
+    {
+        $this->reservas[] = $reserva;
+    }
+
+    public function getPresupuesto()
+    {
+        $presupuestoTotal = 0;
+
+        foreach ($this->reservas as $reserva) {
+            $recurso = $reserva->getRecurso();
+            $precio = $recurso->getPrecio();
+            $plazasReservadas = $reserva->getPlazasReservadas();
+
+            $presupuesto = $precio * $plazasReservadas;
+            $presupuestoTotal += $presupuesto;
+        }
+
+        return $presupuestoTotal;
+    }
+}
 class RecursoTuristico
 {
     private $nombre;
