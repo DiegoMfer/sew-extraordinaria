@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 class Usuario
 {
     private $nombre;
@@ -163,7 +165,7 @@ class Lista
 
         $this->recursoSeleccionado = null;
 
-        $this->reservas = [new Reserva("test", "Recorrido en Bicicleta", "test", 0)];
+        $this->reservas = [];
         while ($fila = $consultaReservas->fetch(PDO::FETCH_ASSOC)) {
             $nombreRecurso = $fila['nombre_recurso'];
             $nombreUsuario = $fila['nombre_usuario'];
@@ -185,7 +187,7 @@ class Lista
             $fechaReserva = $_POST['fecha'];
             $plazasReservadas = $_POST['plazas'];
             $nombreRecurso = $_POST['nombre'];
-            $nombreUsuario = "usuario";
+            $nombreUsuario = $_SESSION['username'];
 
             // Generar un ID 
             $idReserva = count($this->reservas) + 1;
@@ -206,6 +208,8 @@ class Lista
             $this->reservas[] = $reserva;
         }
 
+        $_SESSION['recursos'] = $this->recursos;
+        $_SESSION['reservas'] = $this->reservas;
     }
 
     public function getRecursos()
@@ -366,6 +370,12 @@ $lista = new Lista();
                     <p>No quedan plazas disponibles para este recurso.</p>
                 </section>
             <?php endif; ?>
+
+
+                <section>
+                    <h2>Generar presupuesto</h2>
+                    <a href="presupuesto.php">Ver detalle del presupuesto</a>
+                </section>
         <?php endif; ?>
     </main>
     <footer>

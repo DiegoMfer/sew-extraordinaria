@@ -26,6 +26,15 @@ CREATE TABLE reserva (
 );
 
 
+CREATE TABLE presupuesto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(50),
+    precio DECIMAL(10, 2),
+    FOREIGN KEY (nombre_usuario) REFERENCES usuarios(nombre)
+);
+
+
+
 -- Insertamos los datos
 INSERT INTO usuarios (nombre, contrasena)
 VALUES

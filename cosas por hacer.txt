@@ -6,3 +6,4 @@ bitacora
 desplegar
 cambiar el mapa dinámico a estático
 formularios php añadir id
+mirar si la adaptabilidad en tablas vacías está bien
