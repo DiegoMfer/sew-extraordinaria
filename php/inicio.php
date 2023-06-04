@@ -41,6 +41,19 @@ class RecursoTuristico
     {
         return $this->descripcion;
     }
+
+    public function plazasRestantes($reservas)
+    {
+        $plazasReservadas = 0;
+
+        foreach ($reservas as $reserva) {
+            if ($reserva->getNombreRecurso() === $this->nombre) {
+                $plazasReservadas += $reserva->getPlazasReservadas();
+            }
+        }
+
+        return $this->limiteOcupacion - $plazasReservadas;
+    }
 }
 
 class Reserva
@@ -78,6 +91,8 @@ class Reserva
     {
         return $this->plazasReservadas;
     }
+
+
 }
 
 class Lista
@@ -130,8 +145,29 @@ class Lista
         }
 
 
-        if (isset($_POST['fecha']) && $this->recursoSeleccionado) {
-          //Añade el código para agregar una entidad a la tabla reservas aqui
+        if (isset($_POST['fecha'])) {
+            $fechaReserva = $_POST['fecha'];
+            $plazasReservadas = $_POST['plazas'];
+            $nombreRecurso = $_POST['nombre'];
+            $nombreUsuario = "usuario";
+
+            // Generar un ID 
+            $idReserva = count($this->reservas) + 1;
+
+            // Insertar la nueva reserva en la tabla "reserva"
+            $sql = "INSERT INTO Reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva, plazas_reservadas) 
+                     VALUES (:idReserva, :nombreRecurso, :nombreUsuario, :fechaReserva, :plazasReservadas)";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(':idReserva', $idReserva);
+            $stmt->bindParam(':nombreRecurso', $nombreRecurso);
+            $stmt->bindParam(':nombreUsuario', $nombreUsuario);
+            $stmt->bindParam(':fechaReserva', $fechaReserva);
+            $stmt->bindParam(':plazasReservadas', $plazasReservadas);
+            $stmt->execute();
+
+            // Actualizar el array de reservas
+            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva, $plazasReservadas);
+            $this->reservas[] = $reserva;
         }
 
     }
@@ -266,20 +302,32 @@ $lista = new Lista();
                 </section>
             <?php endif; ?>
 
-            <?php if ($lista->getRecursoSeleccionado()): ?>
+            <?php if ($lista->getRecursoSeleccionado() && $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()) > 0): ?>
                 <section>
                     <h2>Reservar Recurso Turístico -
-                        <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>
+                        <?php echo $lista->getRecursoSeleccionado()->getNombre(); ?> -
+                        <?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?> plazas restantes
                     </h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <input type="hidden" name="recurso"
-                            value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
+
+                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
+                        <label for="nombre">Nombre:</label>
+
                         <label for="fecha">Fecha:</label>
                         <input type="date" name="fecha" required>
+
                         <label for="plazas">Plazas a reservar:</label>
-                        <input type="number" name="plazas" min="1" required>
+                        <input type="number" name="plazas" min="1"
+                            max="<?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?>"
+                            required>
+
                         <input type="submit" value="Reservar">
                     </form>
+                </section>
+            <?php else: ?>
+                <section>
+                    <h2>No se pueden realizar más reservas</h2>
+                    <p>No quedan plazas disponibles para este recurso.</p>
                 </section>
             <?php endif; ?>
         <?php endif; ?>
