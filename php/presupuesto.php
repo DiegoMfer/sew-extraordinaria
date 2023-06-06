@@ -1,5 +1,36 @@
 <?php
 session_start();
+
+
+
+class Presupuesto
+{
+
+    private $nombreUsuario;
+    private $precio;
+
+    public function __construct($nombreUsuario, $precio)
+    {
+
+        $this->nombreUsuario = $nombreUsuario;
+        $this->precio = $precio;
+    }
+
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    
+}
+
+
+
 class RecursoTuristico
 {
     private $nombre;
@@ -84,10 +115,42 @@ class Lista
     private $reservas;
     private $recursos;
 
+    private $presupuestos;
+
     public function __construct()
     {
         $this->reservas = $_SESSION['reservas'];
         $this->recursos = $_SESSION['recursos'];
+        $nombreUsuario = $_SESSION['username'];
+        $conexion = new PDO("mysql:host=localhost;dbname=sew", "test", "test");
+
+
+        // Consulta para obtener los presupuestos por usuario
+        $consulta = $conexion->query("SELECT * FROM presupuesto WHERE nombre_usuario = '$nombreUsuario'");
+
+        // Crear array de presupuestos
+        $this->presupuestos = [];
+        while ($fila = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            $nombre = $fila['nombre_usuario'];
+            $precio = $fila['precio'];
+
+            $presupuesto = new Presupuesto($nombre, $precio);
+            $this->presupuestos[] = $presupuesto;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            $prectioTotal = $this->calcularPrecioTotal() * $_POST['duracion'];
+            $conexion->query("INSERT INTO presupuesto (nombre_usuario, precio) VALUES ('$nombreUsuario', $prectioTotal)");
+
+        }
+
+
+
+        
+
+
+
     }
 
 
@@ -124,10 +187,16 @@ class Lista
 
         return $precioTotal;
     }
+
+    public function getPresupuestos()
+    {
+        return $this->presupuestos;
+    }
 }
 
 $listaReservas = new Lista();
 $reservas = $listaReservas->getReservas();
+$presupuestos = $listaReservas->getPresupuestos();
 ?>
 
 <!DOCTYPE html>
@@ -212,23 +281,58 @@ $reservas = $listaReservas->getReservas();
             <?php endif; ?>
         </section>
 
+        <section>
+            <h2>Listado de Presupuestos para:
+                <?php echo $_SESSION['username']; ?>
+            </h2>
+            <?php if (!empty($presupuestos)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre usuario</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($presupuestos as $presupuesto): ?>
+                            <tr>
+                                <td>
+                                    <?php echo $presupuesto->getNombreUsuario(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $presupuesto->getPrecio(); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>No se encontraron presupuestos.</p>
+            <?php endif; ?>
+        </section>
 
         <?php if (!empty($reservas)): ?>
             <section>
                 <h2>Precio Total</h2>
                 <p>El precio total de las reservas es:
                     <?php echo $listaReservas->calcularPrecioTotal(); ?>
+                    por la duración.
                 </p>
-                <form action="inicio.php" method="post">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <label for="duracion">Duración (mayor o igual a 1):</label>
+                    <input type="number" id="duracion" name="duracion" min="1" required>
                     <input type="submit" value="Guardar presupuesto">
                 </form>
             </section>
         <?php endif; ?>
+
+        <section>
+            <h2>Reservas</h2>
+            <a href="inicio.php">Volver a reservas</a>
+        </section>
     </main>
     <footer>
-        <p>©
-            <?php echo date('Y'); ?> Reservas
-        </p>
+        <p>Proyecto creado por Diego Martín Fernández</p>
     </footer>
 </body>
 

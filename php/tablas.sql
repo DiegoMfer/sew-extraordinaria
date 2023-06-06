@@ -14,6 +14,14 @@ CREATE TABLE usuarios (
   contrasena VARCHAR(255)
 );
 
+CREATE TABLE login (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  usuario_nombre VARCHAR(255),
+  descripcion VARCHAR(255),
+  FOREIGN KEY (usuario_nombre) REFERENCES usuarios(nombre)
+);
+
+
 
 CREATE TABLE reserva (
   id_reserva INT PRIMARY KEY,

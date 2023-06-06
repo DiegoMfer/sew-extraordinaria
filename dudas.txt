@@ -14,3 +14,4 @@
 9. El php esta bien así?
 10. Google maps está bien hecho?
 11. Se pueden usar <br>?
+12. SVG?

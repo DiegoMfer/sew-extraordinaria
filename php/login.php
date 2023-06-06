@@ -15,40 +15,105 @@ class LoginForm
     public function handleLogin()
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $this->username = $_POST["username"];
-            $this->password = $_POST["password"];
 
-            // Conexión a la base de datos
-            $servername = "localhost";
-            $username = "test";
-            $password = "test";
-            $dbname = "sew";
+            if (isset($_POST["username"]) && isset($_POST["password"])) {
+                $this->username = $_POST["username"];
+                $this->password = $_POST["password"];
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
+                // Conexión a la base de datos
+                $servername = "localhost";
+                $username = "test";
+                $password = "test";
+                $dbname = "sew";
 
-            // Comprobar la conexión
-            if ($conn->connect_error) {
-                die("Error de conexión a la base de datos: " . $conn->connect_error);
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Comprobar la conexión
+                if ($conn->connect_error) {
+                    die("Error de conexión a la base de datos: " . $conn->connect_error);
+                }
+
+                // Consulta SQL para verificar el usuario y la contraseña
+                $sql = "SELECT * FROM usuarios WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
+                $result = $conn->query($sql);
+
+
+
+
+
+                if ($result->num_rows == 1) {
+                    // Las credenciales son válidas, guardar el nombre de usuario en la sesión
+                    $_SESSION['username'] = $this->username;
+
+
+                    //------------------------------------ registro del loggin en la base de datos ------------------------------
+                    // Datos del nuevo elemento a insertar
+                    $usuarioNombre = $_POST["username"];
+                    $fechaActual = date("Y-m-d H:i:s");
+                    $descripcion = "Intento de inicio de sesión con éxito para $usuarioNombre con fecha: $fechaActual ";
+
+                    // Consulta SQL para insertar el nuevo elemento
+                    $sql = "INSERT INTO login (usuario_nombre, descripcion) VALUES ('$usuarioNombre', '$descripcion')";
+
+                    if ($conn->query($sql) === TRUE) {
+                        echo "Nuevo elemento insertado correctamente.";
+                    } else {
+                        echo "Error al insertar el elemento: " . $conn->error;
+                    }
+                    //------------------------------------ registro del loggin en la base de datos ------------------------------
+
+                    // Redireccionar a la página de inicio
+                    header("Location: inicio.php");
+                    exit();
+                } else {
+                    // Las credenciales son inválidas, mostrar mensaje de error
+                    $this->error = "Usuario o contraseña incorrectos";
+                    $this->logError($this->error);
+                }
+
+
+
+
+                $conn->close();
             }
 
-            // Consulta SQL para verificar el usuario y la contraseña
-            $sql = "SELECT * FROM usuarios WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
-            $result = $conn->query($sql);
+            //-------------------------------- Registro de usuario --------------
+            if (isset($_POST["reg-username"]) && isset($_POST["reg-password"])) {
+                $regUsername = $_POST["reg-username"];
+                $regPassword = $_POST["reg-password"];
 
-            if ($result->num_rows == 1) {
-                // Las credenciales son válidas, guardar el nombre de usuario en la sesión
-                $_SESSION['username'] = $this->username;
+                // Conexión a la base de datos
+                $servername = "localhost";
+                $username = "test";
+                $password = "test";
+                $dbname = "sew";
 
-                // Redireccionar a la página de inicio
-                header("Location: inicio.php");
-                exit();
-            } else {
-                // Las credenciales son inválidas, mostrar mensaje de error
-                $this->error = "Usuario o contraseña incorrectos";
-                $this->logError($this->error);
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Comprobar la conexión
+                if ($conn->connect_error) {
+                    die("Error de conexión a la base de datos: " . $conn->connect_error);
+                }
+
+                // Verificar si el nombre de usuario ya existe en la base de datos
+                $checkUserQuery = "SELECT * FROM usuarios WHERE nombre = '$regUsername'";
+                $checkUserResult = $conn->query($checkUserQuery);
+
+                if ($checkUserResult->num_rows > 0) {
+                    $registrationError = "El nombre de usuario ya está en uso";
+                } else {
+                    // Insertar el nuevo usuario en la base de datos
+                    $insertUserQuery = "INSERT INTO usuarios (nombre, contrasena) VALUES ('$regUsername', '$regPassword')";
+
+                    if ($conn->query($insertUserQuery) === TRUE) {
+                        $registrationSuccess = "Registro exitoso, puedes iniciar sesión";
+                    } else {
+                        $registrationError = "Error en el registro de usuario: " . $conn->error;
+                    }
+                }
+
+                $conn->close();
             }
-
-            $conn->close();
         }
     }
 
@@ -66,6 +131,7 @@ class LoginForm
 // Crear una instancia del formulario de inicio de sesión
 $loginForm = new LoginForm();
 $loginForm->handleLogin();
+
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +197,33 @@ $loginForm->handleLogin();
                 <?php endif; ?>
             </form>
         </section>
+
+        <section>
+            <h2>Registrarse</h2>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <label for="reg-username">Nombre de usuario:</label>
+                <input type="text" id="reg-username" name="reg-username" required>
+
+                <label for="reg-password">Contraseña:</label>
+                <input type="password" id="reg-password" name="reg-password" required>
+
+                <input type="submit" value="Registrarse">
+            </form>
+
+            <?php if (isset($registrationSuccess)): ?>
+                <p>
+                    <?php echo $registrationSuccess; ?>
+                </p>
+            <?php elseif (isset($registrationError)): ?>
+                <p>
+                    <?php echo $registrationError; ?>
+                </p>
+            <?php endif; ?>
+        </section>
     </main>
+    <footer>
+        <p>Proyecto creado por Diego Martín Fernández</p>
+    </footer>
 </body>
 
 </html>
