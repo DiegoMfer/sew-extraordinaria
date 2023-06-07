@@ -74,19 +74,24 @@ class RecursoTuristico
     }
 
 }
+
 class Reserva
 {
     private $nombre;
     private $nombreRecurso;
     private $fecha;
+
     private $plazasReservadas;
 
-    public function __construct($nombre, $nombreRecurso, $fecha, $plazasReservadas)
+    private $duracion;
+
+    public function __construct($nombre, $nombreRecurso, $fecha, $plazasReservadas, $duracion)
     {
         $this->nombre = $nombre;
         $this->nombreRecurso = $nombreRecurso;
         $this->fecha = $fecha;
         $this->plazasReservadas = $plazasReservadas;
+        $this->duracion = $duracion;
     }
 
     public function getNombre()
@@ -108,6 +113,12 @@ class Reserva
     {
         return $this->plazasReservadas;
     }
+
+    public function getDuracion()
+    {
+        return $this->duracion;
+    }
+
 }
 
 class Lista
@@ -182,7 +193,7 @@ class Lista
         foreach ($this->reservas as $reserva) {
             $precioPorPlaza = $this->getPrecioRecurso($reserva->getNombreRecurso());
             $plazasReservadas = $reserva->getPlazasReservadas();
-            $precioTotal += $precioPorPlaza * $plazasReservadas;
+            $precioTotal += $precioPorPlaza * $plazasReservadas * $reserva->getDuracion();
         }
 
         return $precioTotal;
@@ -254,7 +265,8 @@ $presupuestos = $listaReservas->getPresupuestos();
                             <th>Recurso</th>
                             <th>Fecha</th>
                             <th>Plazas reservadas</th>
-                            <th>Precio por plaza</th>
+                            <th>Horas</th>
+                            <th>Precio por hora</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -268,6 +280,9 @@ $presupuestos = $listaReservas->getPresupuestos();
                                 </td>
                                 <td>
                                     <?php echo $reserva->getPlazasReservadas(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $reserva->getDuracion(); ?>
                                 </td>
                                 <td>
                                     <?php echo $listaReservas->getPrecioRecurso($reserva->getNombreRecurso()); ?>
@@ -316,11 +331,8 @@ $presupuestos = $listaReservas->getPresupuestos();
                 <h2>Precio Total</h2>
                 <p>El precio total de las reservas es:
                     <?php echo $listaReservas->calcularPrecioTotal(); ?>
-                    por la duración.
                 </p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <label for="duracion">Duración (mayor o igual a 1):</label>
-                    <input type="number" id="duracion" name="duracion" min="1" required>
                     <input type="submit" value="Guardar presupuesto">
                 </form>
             </section>

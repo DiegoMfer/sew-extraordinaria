@@ -29,7 +29,7 @@
                 <nombre_hito>Costa</nombre_hito>
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
+                    <longitud>-5.1978200</longitud>
                     <latitud>43.4672200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
@@ -49,7 +49,7 @@
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
                     <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
+                    <latitud>43.4372200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
@@ -115,8 +115,8 @@
                 <nombre_hito>Costa</nombre_hito>
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
+                    <longitud>-5.1128200</longitud>
+                    <latitud>43.4644200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
@@ -134,8 +134,8 @@
                 <nombre_hito>Costa</nombre_hito>
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
+                    <longitud>-5.1978200</longitud>
+                    <latitud>43.4672300</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
@@ -153,8 +153,8 @@
                 <nombre_hito>Costa</nombre_hito>
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
+                    <longitud>-5.1875400</longitud>
+                    <latitud>43.4652200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
@@ -202,6 +202,25 @@
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
                     <longitud>-5.1878200</longitud>
+                    <latitud>43.4772200</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="100 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                    <foto>caravia.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>caravia.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Costa</nombre_hito>
+                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>-5.1998200</longitud>
                     <latitud>43.4672200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
@@ -220,27 +239,8 @@
                 <nombre_hito>Costa</nombre_hito>
                 <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
                 <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
-                    <altitud>10</altitud>
-                </coordenadas_hito>
-                <distancia_hito distancia="100 metros"></distancia_hito>
-                <galeria_fotos>
-                    <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
-                    <foto>caravia.jpg</foto>
-                </galeria_fotos>
-                <galeria_videos>
-                    <video>caravia.mp4</video>
-                </galeria_videos>
-            </hito>
-            <hito>
-                <nombre_hito>Costa</nombre_hito>
-                <descripcion_hito>Tiene un paisaje muy bonito</descripcion_hito>
-                <coordenadas_hito>
-                    <longitud>-5.1878200</longitud>
-                    <latitud>43.4672200</latitud>
+                    <longitud>-5.1228200</longitud>
+                    <latitud>43.4372200</latitud>
                     <altitud>10</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>

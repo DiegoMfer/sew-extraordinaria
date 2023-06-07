@@ -180,21 +180,28 @@ class Rutas {
       url: "xml/rutas.xml",
       dataType: "xml",
       success: function (xml) {
-        // Crear el documento KML
-        var kmlDoc = document.implementation.createDocument("", "kml", null);
-        var kmlElement = kmlDoc.documentElement;
-
-        // Agregar la declaración XML al principio del KML
-        var declaration = kmlDoc.createProcessingInstruction(
-          "xml",
-          'version="1.0" encoding="UTF-8"'
-        );
-        kmlDoc.insertBefore(declaration, kmlElement);
-
         // Recorrer las rutas
         $(xml)
           .find("ruta")
           .each(function () {
+            // Crear el documento KML
+            var kmlDoc = document.implementation.createDocument(
+              "",
+              "kml",
+              null
+            );
+            var kmlElement = kmlDoc.documentElement;
+
+            // Agregar la declaración XML al principio del KML
+            var declaration = kmlDoc.createProcessingInstruction(
+              "xml",
+              'version="1.0" encoding="UTF-8"'
+            );
+            kmlDoc.insertBefore(declaration, kmlElement);
+
+            // Crear el elemento Document
+            var documentElement = kmlDoc.createElement("Document");
+
             // Crear el elemento Placemark
             var placemarkElement = kmlDoc.createElement("Placemark");
 
@@ -236,48 +243,48 @@ class Rutas {
 
             lineStringElement.appendChild(coordinatesElement);
             placemarkElement.appendChild(lineStringElement);
-            kmlElement.appendChild(placemarkElement);
+            documentElement.appendChild(placemarkElement);
+            kmlElement.appendChild(documentElement);
+
+            // Generar el contenido KML
+            var serializer = new XMLSerializer();
+            var kmlString = serializer.serializeToString(kmlDoc);
+
+            // Descargar el archivo KML
+            var link = document.createElement("a");
+            link.setAttribute(
+              "href",
+              "data:text/xml;charset=utf-8," + encodeURIComponent(kmlString)
+            );
+            link.setAttribute("download", nombreRuta + " .kml");
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
           });
-
-        // Generar el contenido KML
-        var serializer = new XMLSerializer();
-        var kmlString = serializer.serializeToString(kmlDoc);
-
-        // Descargar el archivo KML
-        var link = document.createElement("a");
-        link.setAttribute(
-          "href",
-          "data:text/xml;charset=utf-8," + encodeURIComponent(kmlString)
-        );
-        link.setAttribute("download", "rutas.kml");
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
       },
     });
   }
 
-
   obtenerAltura(longitud, latitud) {
     var apiUrl = `https://nationalmap.gov/epqs/pqs.php?x=${longitud}&y=${latitud}&units=Meters&output=json`;
-  
+
     fetch(apiUrl)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
-        var elevation = data.USGS_Elevation_Point_Query_Service.Elevation_Query.Elevation;
+      .then(function (data) {
+        var elevation =
+          data.USGS_Elevation_Point_Query_Service.Elevation_Query.Elevation;
         console.log("Altura: " + elevation + " metros");
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log("Error al obtener la altura: " + error);
       });
   }
-  
 
   generateSVG() {
-    obtenerAltura(-5,43)
+    obtenerAltura(-5, 43);
   }
 }
 

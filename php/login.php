@@ -34,7 +34,7 @@ class LoginForm
                 }
 
                 // Consulta SQL para verificar el usuario y la contraseña
-                $sql = "SELECT * FROM usuarios WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
+                $sql = "SELECT * FROM usuario WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
                 $result = $conn->query($sql);
 
 
@@ -96,14 +96,14 @@ class LoginForm
                 }
 
                 // Verificar si el nombre de usuario ya existe en la base de datos
-                $checkUserQuery = "SELECT * FROM usuarios WHERE nombre = '$regUsername'";
+                $checkUserQuery = "SELECT * FROM usuario WHERE nombre = '$regUsername'";
                 $checkUserResult = $conn->query($checkUserQuery);
 
                 if ($checkUserResult->num_rows > 0) {
                     $registrationError = "El nombre de usuario ya está en uso";
                 } else {
                     // Insertar el nuevo usuario en la base de datos
-                    $insertUserQuery = "INSERT INTO usuarios (nombre, contrasena) VALUES ('$regUsername', '$regPassword')";
+                    $insertUserQuery = "INSERT INTO usuario (nombre, contrasena) VALUES ('$regUsername', '$regPassword')";
 
                     if ($conn->query($insertUserQuery) === TRUE) {
                         $registrationSuccess = "Registro exitoso, puedes iniciar sesión";

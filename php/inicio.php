@@ -102,12 +102,15 @@ class Reserva
 
     private $plazasReservadas;
 
-    public function __construct($nombre, $nombreRecurso, $fecha, $plazasReservadas)
+    private $duracion;
+
+    public function __construct($nombre, $nombreRecurso, $fecha, $plazasReservadas, $duracion)
     {
         $this->nombre = $nombre;
         $this->nombreRecurso = $nombreRecurso;
         $this->fecha = $fecha;
         $this->plazasReservadas = $plazasReservadas;
+        $this->duracion = $duracion;
     }
 
     public function getNombre()
@@ -130,6 +133,10 @@ class Reserva
         return $this->plazasReservadas;
     }
 
+    public function getDuracion()
+    {
+        return $this->duracion;
+    }
 
 }
 
@@ -171,7 +178,8 @@ class Lista
             $nombreUsuario = $fila['nombre_usuario'];
             $fecha = $fila['fecha_reserva'];
             $plazasReservadas = $fila['plazas_reservadas'];
-            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fecha, $plazasReservadas);
+            $duracion = $fila['duracion'];
+            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fecha, $plazasReservadas, $duracion);
             $this->reservas[] = $reserva;
         }
 
@@ -188,23 +196,25 @@ class Lista
             $plazasReservadas = $_POST['plazas'];
             $nombreRecurso = $_POST['nombre'];
             $nombreUsuario = $_SESSION['username'];
+            $duracion = $_POST['duracion'];
 
             // Generar un ID 
             $idReserva = count($this->reservas) + 1;
 
             // Insertar la nueva reserva en la tabla "reserva"
-            $sql = "INSERT INTO Reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva, plazas_reservadas) 
-                     VALUES (:idReserva, :nombreRecurso, :nombreUsuario, :fechaReserva, :plazasReservadas)";
+            $sql = "INSERT INTO Reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva, plazas_reservadas, duracion) 
+                     VALUES (:idReserva, :nombreRecurso, :nombreUsuario, :fechaReserva, :plazasReservadas, :duracion)";
             $stmt = $conexion->prepare($sql);
             $stmt->bindParam(':idReserva', $idReserva);
             $stmt->bindParam(':nombreRecurso', $nombreRecurso);
             $stmt->bindParam(':nombreUsuario', $nombreUsuario);
             $stmt->bindParam(':fechaReserva', $fechaReserva);
             $stmt->bindParam(':plazasReservadas', $plazasReservadas);
+            $stmt->bindParam(':duracion', $duracion);
             $stmt->execute();
 
             // Actualizar el array de reservas
-            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva, $plazasReservadas);
+            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva, $plazasReservadas, $duracion);
             $this->reservas[] = $reserva;
         }
 
@@ -319,6 +329,7 @@ $lista = new Lista();
                                 <th>Nombre</th>
                                 <th>Fecha</th>
                                 <th>Plazas reservadas</th>
+                                <th>Duración en horas</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -333,6 +344,9 @@ $lista = new Lista();
                                         </td>
                                         <td>
                                             <?php echo $reserva->getPlazasReservadas(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $reserva->getDuracion(); ?>
                                         </td>
                                     </tr>
                                 <?php endif; ?>
@@ -349,9 +363,9 @@ $lista = new Lista();
                         <?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?> plazas restantes
                     </h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
-                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
                         <label for="nombre">Nombre:</label>
+                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
+                        
 
                         <label for="fecha">Fecha:</label>
                         <input type="date" name="fecha" required>
@@ -361,7 +375,12 @@ $lista = new Lista();
                             max="<?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?>"
                             required>
 
+                        <label for="duracion">Horas:</label>
+                        <input type="number" name="duracion" min="1" max="24"required>
+
                         <input type="submit" value="Reservar">
+
+
                     </form>
                 </section>
             <?php else: ?>

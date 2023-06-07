@@ -15,3 +15,6 @@
 10. Google maps está bien hecho?
 11. Se pueden usar <br>?
 12. SVG?
+13. En el despliegue de azure, tengo que mantener la página up?
+14. En la planimetria y altimetria con un enlace vale?
+15. KML
