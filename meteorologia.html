@@ -15,7 +15,7 @@
     <script src="js/meteorologia.js"></script>
 </head>
 
-<body>
+<body onload="meteo.cargarTiempo();">
     <header>
         <h1>Página web de Caravia</h1>
     </header>
@@ -47,8 +47,7 @@
     <main>
         <h1>Sección del tiempo</h1>
         <section>
-            <h2>Botón para cargar el tiempo en los próximos 7 días en Caravia:</h2>
-            <button onclick="meteo.cargarTiempo();">Cargar tiempo</button>
+            <h2>El tiempo en los próximos 7 días en Caravia:</h2>
         </section>
     </main>
 </body>

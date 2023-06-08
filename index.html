@@ -16,7 +16,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChw7GP1f7A_a4FXClRNGTGrG9djfeNn3s&libraries=places"></script>
 </head>
 
-<body onload="mapaDinamicoGoogle.initMap();">
+<body onload="mapaEstatico.getMapaEstaticoGoogle();">
     <header>
         <h1>Página web de Caravia</h1>
     </header>
@@ -49,7 +49,7 @@
         <h1>Inicio</h1>
         <section>
             <h2>Carrusel de fotos</h2>
-            <img src="multimedia/images/caravia.jpg" alt="Imagen de Caravia" name="carrusel" /> 
+            <img src="multimedia/images/caravia.jpg" alt="Imagen de Caravia" /> 
             <p>Botones</p>
             <button type="button" onclick="index.anterior();">Anterior</button>
             <button type="button" onclick="index.siguiente();">Siguiente</button>   
@@ -72,8 +72,8 @@
         <h1>Sección de mapa</h1>
         <section>
             <h2>Mapa político</h2>
-            <section name="map">
-  
+            <section>
+                <h3>Este es el mapa</h3>
             </section>
         </section>
         

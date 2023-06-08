@@ -1,7 +1,6 @@
 class Rutas {
   load() {
     this.getXML();
-    $("main").prepend("<h1> Rutas </h1>");
   }
 
   getXML() {
@@ -184,107 +183,121 @@ class Rutas {
         $(xml)
           .find("ruta")
           .each(function () {
-            // Crear el documento KML
-            var kmlDoc = document.implementation.createDocument(
-              "",
-              "kml",
-              null
-            );
-            var kmlElement = kmlDoc.documentElement;
 
-            // Agregar la declaración XML al principio del KML
-            var declaration = kmlDoc.createProcessingInstruction(
-              "xml",
-              'version="1.0" encoding="UTF-8"'
-            );
-            kmlDoc.insertBefore(declaration, kmlElement);
-
-            // Crear el elemento Document
-            var documentElement = kmlDoc.createElement("Document");
-
-            // Crear el elemento Placemark
-            var placemarkElement = kmlDoc.createElement("Placemark");
-
-            // Obtener el nombre de la ruta y crear el elemento name
             var nombreRuta = $(this).find("nombre_ruta").text();
-            var nameElement = kmlDoc.createElement("name");
-            nameElement.appendChild(kmlDoc.createTextNode(nombreRuta));
-            placemarkElement.appendChild(nameElement);
 
-            // Crear el elemento LineString
-            var lineStringElement = kmlDoc.createElement("LineString");
-
-            // Crear los elementos extrude y tessellate
-            var extrudeElement = kmlDoc.createElement("extrude");
-            extrudeElement.appendChild(kmlDoc.createTextNode("1"));
-            lineStringElement.appendChild(extrudeElement);
-
-            var tessellateElement = kmlDoc.createElement("tessellate");
-            tessellateElement.appendChild(kmlDoc.createTextNode("1"));
-            lineStringElement.appendChild(tessellateElement);
-
-            // Crear el elemento coordinates
-            var coordinatesElement = kmlDoc.createElement("coordinates");
-
-            // Obtener las coordenadas de los hitos de la ruta
+            // Contenido del archivo de texto
+            var content = '<?xml version="1.0" encoding="UTF-8"?> <kml>'
+            
+            content += "<Document>"
+            content += "<Placemark>"
+            content += "<name>"+nombreRuta+"</name> <LineString><extrude>1</extrude><tessellate>1</tessellate><coordinates>"
             var hitos = $(this).find("hito");
+            
+            
             hitos.each(function () {
               var longitud = $(this).find("longitud").text();
               var latitud = $(this).find("latitud").text();
               var altitud = $(this).find("altitud").text();
-
-              // Agregar las coordenadas al elemento coordinates
               var coordinateText =
                 longitud + "," + latitud + "," + altitud + "\n";
-              coordinatesElement.appendChild(
-                kmlDoc.createTextNode(coordinateText)
-              );
+              content += coordinateText;
+             
             });
+            
+            content += "</coordinates>"
+            content += "</LineString>"
+            content += "</Placemark>"
+            content += "</Document>"
+            content += "</kml>"
 
-            lineStringElement.appendChild(coordinatesElement);
-            placemarkElement.appendChild(lineStringElement);
-            documentElement.appendChild(placemarkElement);
-            kmlElement.appendChild(documentElement);
 
-            // Generar el contenido KML
-            var serializer = new XMLSerializer();
-            var kmlString = serializer.serializeToString(kmlDoc);
-
-            // Descargar el archivo KML
+            // Crear un elemento de enlace
             var link = document.createElement("a");
-            link.setAttribute(
-              "href",
-              "data:text/xml;charset=utf-8," + encodeURIComponent(kmlString)
-            );
-            link.setAttribute("download", nombreRuta + " .kml");
+            link.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
+            link.setAttribute("download", nombreRuta + ".kml");
             link.style.display = "none";
+
+            // Agregar el enlace al documento
             document.body.appendChild(link);
+
+            // Simular un clic en el enlace para descargar el archivo
             link.click();
+
+            // Eliminar el enlace del documento
             document.body.removeChild(link);
           });
       },
     });
   }
 
-  obtenerAltura(longitud, latitud) {
-    var apiUrl = `https://nationalmap.gov/epqs/pqs.php?x=${longitud}&y=${latitud}&units=Meters&output=json`;
-
-    fetch(apiUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        var elevation =
-          data.USGS_Elevation_Point_Query_Service.Elevation_Query.Elevation;
-        console.log("Altura: " + elevation + " metros");
-      })
-      .catch(function (error) {
-        console.log("Error al obtener la altura: " + error);
-      });
-  }
-
   generateSVG() {
-    obtenerAltura(-5, 43);
+    // Cargar el XML
+    $.ajax({
+      url: "xml/rutas.xml",
+      dataType: "xml",
+      success: function (xml) {
+        // Recorrer las rutas
+        $(xml)
+          .find("ruta")
+          .each(function () {
+
+            var nombreRuta = $(this).find("nombre_ruta").text();
+
+            // Contenido del archivo de texto
+            var content = '<?xml version="1.0" encoding="UTF-8" ?> <svg xmlns="http://www.w3.org/2000/svg" version="2.0">'
+            
+            content += "<polyline points="
+
+            var hitos = $(this).find("hito");
+            content += '"'
+            var counter = 0
+
+            content += counter + ',' + 160 +'\n'
+            hitos.each(function () {
+              var altitud = $(this).find("altitud").text();
+              counter += 40
+              content += counter + ',' + altitud +'\n'
+              
+             
+            });
+            content += counter + 40 + ',' + 160 +'\n'
+            content += 0 + ',' + 160 +'\n'
+            content += '" style="fill:white;stroke:red;stroke-width:4" />'
+            content += 'Su agente de usuario no soporta SVG \n';
+
+            counter = 0
+            hitos.each(function () {
+              var nombreHito = $(this).find("nombre_hito").text();
+              counter += 40
+             
+              content += '<text x="' + counter +'" y="'+ 180 + '" style="writing-mode: tb; glyph-orientation-vertical: 0;">'
+              content += nombreHito
+              content += "</text>"
+              
+             
+            });
+
+            content += '</svg>';
+
+
+            // Crear un elemento de enlace
+            var link = document.createElement("a");
+            link.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(content));
+            link.setAttribute("download", nombreRuta + ".svg");
+            link.style.display = "none";
+
+            // Agregar el enlace al documento
+            document.body.appendChild(link);
+
+            // Simular un clic en el enlace para descargar el archivo
+            link.click();
+
+            // Eliminar el enlace del documento
+            document.body.removeChild(link);
+          });
+      },
+    });
   }
 }
 

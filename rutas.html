@@ -15,7 +15,7 @@
     <script src="js/rutas.js"></script>
 </head>
 
-<body>
+<body onload="rutas.load();">
     <header>
         <h1>Página web de Caravia</h1>
     </header>
@@ -47,8 +47,6 @@
     <main>
         <h1>Panel de control</h1>
         <section>
-            <h2>Generar html a partir de xml</h2>
-            <button onclick="rutas.load();">Cargar datos al html</button>
             <h2>Generar kml a partir de xml</h2>
             <button onclick="rutas.generateKML();">Generar kml</button>
             <h2>Generar svg a partir de xml</h2>

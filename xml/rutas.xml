@@ -31,7 +31,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1978200</longitud>
                     <latitud>43.4672200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>100</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -50,7 +50,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1878200</longitud>
                     <latitud>43.4372200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>143</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -69,7 +69,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1878200</longitud>
                     <latitud>43.4672200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>67</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -84,8 +84,8 @@
             </hito>
 
         </hitos>
-        <planimetria>aa</planimetria>
-        <altimetria>aa</altimetria>
+        <planimetria>Ruta de la playa.kml</planimetria>
+        <altimetria>Ruta de la playa.svg</altimetria>
     </ruta>
     <ruta>
         <nombre_ruta>Ruta de la playa 2</nombre_ruta>
@@ -102,7 +102,7 @@
         <coordenadas>
             <longitud>-5.1878200</longitud>
             <latitud>43.4672200</latitud>
-            <altitud>10</altitud>
+            <altitud>42</altitud>
         </coordenadas>
         <referencias>
             <referencia>https://www.aytocaravia.com/</referencia>
@@ -136,7 +136,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1978200</longitud>
                     <latitud>43.4672300</latitud>
-                    <altitud>10</altitud>
+                    <altitud>45</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -155,7 +155,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1875400</longitud>
                     <latitud>43.4652200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>105</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -170,8 +170,8 @@
             </hito>
 
         </hitos>
-        <planimetria>rutaPlaya.kml</planimetria>
-        <altimetria>rutaPlaya.svg</altimetria>
+        <planimetria>Ruta de la playa 2.kml</planimetria>
+        <altimetria>Ruta de la playa 2.svg</altimetria>
     </ruta>
     <ruta>
         <nombre_ruta>Ruta de la playa 3</nombre_ruta>
@@ -188,7 +188,7 @@
         <coordenadas>
             <longitud>-5.1878200</longitud>
             <latitud>43.4672200</latitud>
-            <altitud>10</altitud>
+            <altitud>145</altitud>
         </coordenadas>
         <referencias>
             <referencia>https://www.aytocaravia.com/</referencia>
@@ -203,7 +203,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1878200</longitud>
                     <latitud>43.4772200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>76</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -222,7 +222,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1998200</longitud>
                     <latitud>43.4672200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>98</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -241,7 +241,7 @@
                 <coordenadas_hito>
                     <longitud>-5.1228200</longitud>
                     <latitud>43.4372200</latitud>
-                    <altitud>10</altitud>
+                    <altitud>89</altitud>
                 </coordenadas_hito>
                 <distancia_hito distancia="100 metros"></distancia_hito>
                 <galeria_fotos>
@@ -253,7 +253,7 @@
             </hito>
 
         </hitos>
-        <planimetria></planimetria>
-        <altimetria></altimetria>
+        <planimetria>Ruta de la playa 3.kml</planimetria>
+        <altimetria>Ruta de la playa 3.svg</altimetria>
     </ruta>
 </rutas>

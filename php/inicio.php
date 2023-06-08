@@ -295,7 +295,7 @@ $lista = new Lista();
                         <option value="<?php echo $indice; ?>"><?php echo $recurso->getNombre(); ?></option>
                     <?php endforeach; ?>
                 </select>
-                <br>
+    
                 <input type="submit" value="Mostrar información">
             </form>
         </section>
@@ -363,20 +363,21 @@ $lista = new Lista();
                         <?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?> plazas restantes
                     </h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <label for="nombre">Nombre:</label>
-                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>">
+                       
+                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>" id="nombre">
                         
 
                         <label for="fecha">Fecha:</label>
-                        <input type="date" name="fecha" required>
+                        <input type="date" name="fecha" id="fecha" required>
 
                         <label for="plazas">Plazas a reservar:</label>
                         <input type="number" name="plazas" min="1"
                             max="<?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?>"
+                            id="plazas"
                             required>
 
                         <label for="duracion">Horas:</label>
-                        <input type="number" name="duracion" min="1" max="24"required>
+                        <input type="number" name="duracion" min="1" max="24"  id="duracion" required>
 
                         <input type="submit" value="Reservar">
 

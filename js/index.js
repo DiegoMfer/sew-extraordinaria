@@ -1,5 +1,5 @@
 class Index {
-
+    
     constructor(){
         this.carrusel = ['caravia.jpg','caravia2.jpg','caravia3.jpg','caravia4.jpg','caravia5.jpg']
         this.carpeta = 'multimedia/images/'
@@ -13,7 +13,7 @@ class Index {
         if(this.index == -1){
             this.index = 4;
         }
-        $('img[name="carrusel"]').attr("src","multimedia/images/" + this.carrusel[this.index]);
+        $('main section:eq(0) img').attr("src","multimedia/images/" + this.carrusel[this.index]);
     }
 
     siguiente(){
@@ -21,9 +21,11 @@ class Index {
         if(this.index >= 5){
             this.index = 0;
         }
-        $('img[name="carrusel"]').attr("src","multimedia/images/" + this.carrusel[this.index]);
+        $('main section:eq(0) img').attr("src","multimedia/images/" + this.carrusel[this.index]);
     }
 
+
+    //sexip11104@rockdian.com 9!RSg66*Ro*^ TIENE LLAMADAS LIMITADAS
     cargarNoticias(){
       
         var settings = {
@@ -31,7 +33,7 @@ class Index {
             "method": "GET",
             "timeout": 0,
             "headers": {
-              "x-api-key": "50Wka5hGVBCRFIwndVaLoCzV479JbJ2w77RDCiQ_2i4"
+              "x-api-key": "bhv1x6P4ssOdiJuBa1txD5CPCD-eObymXnERGJNqrYA"
             },
           };
           
@@ -95,32 +97,71 @@ class Index {
 
 }
 
-class MapaDinamicoGoogle {
-  initMap(){  
-      var centro = {lat: 43.4676, lng: -5.19014};
-      var mapaGeoposicionado = new google.maps.Map(document.getElementsByName('map')[0],{
-          zoom: 14,
-          center:centro,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-      
-      
 
-      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
-      $("main section:eq(4)").append("<p>Esto es para hacer que el mapa sea más grande</p>")
+
+class Geolocalizacion {
+  constructor (){
+      navigator.geolocation.getCurrentPosition(this.getPosicion.bind(this), this.verErrores.bind(this));
   }
 
-  handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(browserHasGeolocation ?
-                            'Error: Ha fallado la geolocalización' :
-                            'Error: Su navegador no soporta geolocalización');
-      infoWindow.open(mapaGeoposicionado);
+  getPosicion(posicion){
+      this.longitud         = -5.19014 
+      this.latitud          = 43.4676;   
+      this.mensaje = "Se ha realizado correctamente la petición de geolocalización";  
+      this.key = 'AIzaSyCHrw6i7FALRPCmDi4nPyBhAOgsCdjRunA';
+  }
+
+  getLongitud(){
+      return this.longitud;
+  }
+
+  getLatitud(){
+      return this.latitud;
+  }
+  
+  verErrores(error){
+      switch(error.code) {
+      case error.PERMISSION_DENIED:
+          this.mensaje = "El usuario no permite la petición de geolocalización"
+          break;
+      case error.POSITION_UNAVAILABLE:
+          this.mensaje = "Información de geolocalización no disponible"
+          break;
+      case error.TIMEOUT:
+          this.mensaje = "La petición de geolocalización ha caducado"
+          break;
+      case error.UNKNOWN_ERROR:
+          this.mensaje = "Se ha producido un error desconocido"
+          break;
+      }
+  }
+
+  cargarPosicion(){
+      if(this.activado != true){
+          var datos = ''
+          datos+='<section>'; 
+          datos+='<p>Error mensaje: '+ this.mensaje +'</p>'
+          datos+='<p>Longitud: '+this.longitud +' grados</p>'; 
+          datos+='<p>Latitud: '+this.latitud +' grados</p>';
+          datos+='</section>'
+          $("button").before(datos);
+          this.activado = true;
+      }
+  }
+
+  getMapaEstaticoGoogle(){
+      
+      var apiKey = "&key=" + this.key;
+      var url = "https://maps.googleapis.com/maps/api/staticmap?";
+      var centro = "center=" + this.latitud + "," + this.longitud;
+      var zoom ="&zoom=15";
+      var tamaño= "&size=800x600";
+      var marcador = "&markers=color:red%7Clabel:S%7C" + this.latitud + "," + this.longitud;
+      var sensor = "&sensor=false"; 
+      this.imagenMapa = url + centro + zoom + tamaño + marcador + sensor + apiKey;
+      var datos = " <img src='"+this.imagenMapa+"' alt='mapa estático google' /> ";
+      $("main section:eq(4)").append(datos)
   }
 }
-
-var mapaDinamicoGoogle = new MapaDinamicoGoogle();
+var mapaEstatico = new Geolocalizacion();
 var index = new Index();
