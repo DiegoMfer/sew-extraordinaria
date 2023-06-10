@@ -376,7 +376,7 @@ $lista = new Lista();
                             id="plazas"
                             required>
 
-                        <label for="duracion">Horas:</label>
+                        <label for="duracion">Horas (a partir de 8 horas es un nuevo día):</label>
                         <input type="number" name="duracion" min="1" max="24"  id="duracion" required>
 
                         <input type="submit" value="Reservar">
