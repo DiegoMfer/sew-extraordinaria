@@ -151,7 +151,7 @@ class Lista
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-            $prectioTotal = $this->calcularPrecioTotal() * $_POST['duracion'];
+            $prectioTotal = $this->calcularPrecioTotal() ;
             $conexion->query("INSERT INTO presupuesto (nombre_usuario, precio) VALUES ('$nombreUsuario', $prectioTotal)");
 
         }
