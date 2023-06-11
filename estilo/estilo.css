@@ -7,6 +7,11 @@ header, footer, nav {
     color: white;
  
 }
+/*Especificidad : 002*/
+header > h1 {
+    color:white;
+    background-color: black;
+}
 
 /*----------------- Body -----------------*/
 /*Especificidad : 001*/
