@@ -133,30 +133,41 @@ class Lista
         $this->reservas = $_SESSION['reservas'];
         $this->recursos = $_SESSION['recursos'];
         $nombreUsuario = $_SESSION['username'];
-        $conexion = new PDO("mysql:host=localhost;dbname=sew", "test", "test");
-
-
+        $conexion = new mysqli("localhost", "test", "test", "sew");
+        
+        // Verificar si hay error de conexión
+        if ($conexion->connect_error) {
+            die("Error de conexión: " . $conexion->connect_error);
+        }
+        
         // Consulta para obtener los presupuestos por usuario
         $consulta = $conexion->query("SELECT * FROM presupuesto WHERE nombre_usuario = '$nombreUsuario'");
-
+        
         // Crear array de presupuestos
         $this->presupuestos = [];
-        while ($fila = $consulta->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $consulta->fetch_assoc()) {
             $nombre = $fila['nombre_usuario'];
             $precio = $fila['precio'];
-
+        
             $presupuesto = new Presupuesto($nombre, $precio);
             $this->presupuestos[] = $presupuesto;
         }
-
+        
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-            $prectioTotal = $this->calcularPrecioTotal() ;
-            $conexion->query("INSERT INTO presupuesto (nombre_usuario, precio) VALUES ('$nombreUsuario', $prectioTotal)");
-
+            $precioTotal = $this->calcularPrecioTotal();
+            
+            // Insertar nuevo presupuesto en la base de datos
+            $insertQuery = "INSERT INTO presupuesto (nombre_usuario, precio) VALUES ('$nombreUsuario', $precioTotal)";
+            if ($conexion->query($insertQuery) === true) {
+                echo "Presupuesto insertado correctamente.";
+            } else {
+                echo "Error al insertar el presupuesto: " . $conexion->error;
+            }
         }
-
-
+        
+        // Cerrar la conexión
+        $conexion->close();
+        
 
         
 

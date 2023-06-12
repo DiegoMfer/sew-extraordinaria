@@ -150,7 +150,11 @@ class Lista
     public function __construct()
     {
         // Conexión a la base de datos
-        $conexion = new PDO("mysql:host=localhost;dbname=sew", "test", "test");
+        $conexion = new mysqli("localhost", "test", "test", "sew");
+
+        if ($conexion->connect_error) {
+            die("Error de conexión a la base de datos: " . $conexion->connect_error);
+        }
 
         // Consulta para obtener los recursos turísticos
         $consulta = $conexion->query("SELECT * FROM Recursoturistico");
@@ -160,7 +164,7 @@ class Lista
 
         // Crear array de recursos turísticos
         $this->recursos = [];
-        while ($fila = $consulta->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $consulta->fetch_assoc()) {
             $nombre = $fila['nombreRecurso'];
             $tipo = $fila['tipo'];
             $precio = $fila['precio'];
@@ -173,7 +177,7 @@ class Lista
         $this->recursoSeleccionado = null;
 
         $this->reservas = [];
-        while ($fila = $consultaReservas->fetch(PDO::FETCH_ASSOC)) {
+        while ($fila = $consultaReservas->fetch_assoc()) {
             $nombreRecurso = $fila['nombre_recurso'];
             $nombreUsuario = $fila['nombre_usuario'];
             $fecha = $fila['fecha_reserva'];
@@ -190,7 +194,6 @@ class Lista
             }
         }
 
-
         if (isset($_POST['fecha'])) {
             $fechaReserva = $_POST['fecha'];
             $plazasReservadas = $_POST['plazas'];
@@ -203,23 +206,21 @@ class Lista
 
             // Insertar la nueva reserva en la tabla "reserva"
             $sql = "INSERT INTO Reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva, plazas_reservadas, duracion) 
-                     VALUES (:idReserva, :nombreRecurso, :nombreUsuario, :fechaReserva, :plazasReservadas, :duracion)";
-            $stmt = $conexion->prepare($sql);
-            $stmt->bindParam(':idReserva', $idReserva);
-            $stmt->bindParam(':nombreRecurso', $nombreRecurso);
-            $stmt->bindParam(':nombreUsuario', $nombreUsuario);
-            $stmt->bindParam(':fechaReserva', $fechaReserva);
-            $stmt->bindParam(':plazasReservadas', $plazasReservadas);
-            $stmt->bindParam(':duracion', $duracion);
-            $stmt->execute();
-
-            // Actualizar el array de reservas
-            $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva, $plazasReservadas, $duracion);
-            $this->reservas[] = $reserva;
+             VALUES ('$idReserva', '$nombreRecurso', '$nombreUsuario', '$fechaReserva', '$plazasReservadas', '$duracion')";
+            if ($conexion->query($sql) === TRUE) {
+                // Actualizar el array de reservas
+                $reserva = new Reserva($nombreUsuario, $nombreRecurso, $fechaReserva, $plazasReservadas, $duracion);
+                $this->reservas[] = $reserva;
+            } else {
+                echo "Error al insertar la reserva: " . $conexion->error;
+            }
         }
 
         $_SESSION['recursos'] = $this->recursos;
         $_SESSION['reservas'] = $this->reservas;
+
+        $conexion->close();
+
     }
 
     public function getRecursos()
@@ -295,7 +296,7 @@ $lista = new Lista();
                         <option value="<?php echo $indice; ?>"><?php echo $recurso->getNombre(); ?></option>
                     <?php endforeach; ?>
                 </select>
-    
+
                 <input type="submit" value="Mostrar información">
             </form>
         </section>
@@ -363,9 +364,10 @@ $lista = new Lista();
                         <?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?> plazas restantes
                     </h2>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                       
-                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>" id="nombre">
-                        
+
+                        <input type="hidden" name="nombre" value="<?php echo $lista->getRecursoSeleccionado()->getNombre(); ?>"
+                            id="nombre">
+
 
                         <label for="fecha">Fecha:</label>
                         <input type="date" name="fecha" id="fecha" required>
@@ -373,11 +375,10 @@ $lista = new Lista();
                         <label for="plazas">Plazas a reservar:</label>
                         <input type="number" name="plazas" min="1"
                             max="<?php echo $lista->getRecursoSeleccionado()->plazasRestantes($lista->getReservas()); ?>"
-                            id="plazas"
-                            required>
+                            id="plazas" required>
 
                         <label for="duracion">Horas (a partir de 8 horas es un nuevo día):</label>
-                        <input type="number" name="duracion" min="1" max="24"  id="duracion" required>
+                        <input type="number" name="duracion" min="1" max="24" id="duracion" required>
 
                         <input type="submit" value="Reservar">
 
@@ -392,10 +393,10 @@ $lista = new Lista();
             <?php endif; ?>
 
 
-                <section>
-                    <h2>Generar presupuesto</h2>
-                    <a href="presupuesto.php">Ver detalle del presupuesto</a>
-                </section>
+            <section>
+                <h2>Generar presupuesto</h2>
+                <a href="presupuesto.php">Ver detalle del presupuesto</a>
+            </section>
         <?php endif; ?>
     </main>
     <footer>
