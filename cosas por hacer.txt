@@ -1,10 +1,10 @@
 
-nombres de los archivos de planimetria y altimetria
-validar css y html
+
 adaptabilidad y accesibilidad
 bitacora
 desplegar
-cambiar el mapa dinámico a estático
-formularios php añadir id
-mirar si la adaptabilidad en tablas vacías está bien
-noticias
+
+
+uo276345
+uo276345-testSew
+20.199.27.14

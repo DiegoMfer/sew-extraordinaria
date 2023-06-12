@@ -55,7 +55,7 @@ class Index {
         var settings = {
           dataType:"json",
           url:
-            "http://api.openweathermap.org/data/2.5/weather?q=" +
+            "https://api.openweathermap.org/data/2.5/weather?q=" +
             "Caravia" +
             ",ES&units=metric&lang=es&APPID=" +
             this.key,
