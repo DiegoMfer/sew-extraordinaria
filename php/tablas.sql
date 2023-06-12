@@ -52,7 +52,7 @@ CREATE TABLE Presupuesto (
 
 
 -- Insertamos los datos
-INSERT INTO usuario (nombre, contrasena)
+INSERT INTO Usuario (nombre, contrasena)
 VALUES
   ('usuario', 'contraseña'),
   ('usuario2', 'contraseña2');
