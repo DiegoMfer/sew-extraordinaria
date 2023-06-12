@@ -9,7 +9,16 @@ CREATE TABLE Login (
   id INT PRIMARY KEY AUTO_INCREMENT,
   usuario_nombre VARCHAR(255),
   descripcion VARCHAR(255),
-  FOREIGN KEY (usuario_nombre) REFERENCES usuario(nombre)
+  FOREIGN KEY (usuario_nombre) REFERENCES Usuario(nombre)
+);
+
+
+CREATE TABLE Recursoturistico (
+  nombreRecurso VARCHAR(255) PRIMARY KEY,
+  tipo VARCHAR(100),
+  precio DECIMAL(10, 2),
+  limiteOcupacion INT,
+  descripcion TEXT
 );
 
 CREATE TABLE Reserva (
@@ -20,23 +29,16 @@ CREATE TABLE Reserva (
   plazas_reservadas INT,
   duracion INT,
   FOREIGN KEY (nombre_recurso) REFERENCES Recursoturistico(nombreRecurso),
-  FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre)
+  FOREIGN KEY (nombre_usuario) REFERENCES Usuario(nombre)
 );
 
 CREATE TABLE Presupuesto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50),
     precio DECIMAL(10, 2),
-    FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre)
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuario(nombre)
 );
 
-CREATE TABLE Recursoturistico (
-  nombreRecurso VARCHAR(255) PRIMARY KEY,
-  tipo VARCHAR(100),
-  precio DECIMAL(10, 2),
-  limiteOcupacion INT,
-  descripcion TEXT
-);
 
 
 
