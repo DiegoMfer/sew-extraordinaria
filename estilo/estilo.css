@@ -40,12 +40,6 @@ nav > a{
     
 }
 
-/*Especificidad : 012*/
-nav > a:hover {
-    color: lightblue;
-    background-color: black;
-}
-
 /*----------------- Section -----------------*/
 /*Especificidad : 001*/
 section{
