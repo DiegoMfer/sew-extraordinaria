@@ -71,7 +71,7 @@ VALUES
   ('Ruta del Vino', 'Enoturismo', 12.00, 100, 'Visita a viñedos y bodegas para degustar vinos de la región.');
 
 
-  INSERT INTO reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva,plazas_reservadas)
+  INSERT INTO Reserva (id_reserva, nombre_recurso, nombre_usuario, fecha_reserva,plazas_reservadas)
 VALUES
   (1, 'Playa de Arena Blanca', 'usuario', '2023-06-01',1),
   (2, 'Cascada del Bosque Verde', 'usuario', '2023-06-02',1),
