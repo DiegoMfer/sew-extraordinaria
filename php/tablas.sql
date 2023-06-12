@@ -1,15 +1,5 @@
 -- La base de datos está hecha con xampp mysql, su nombre es sew y para conectarse el usuario y contraseña es test test
 
-
-
-CREATE TABLE Recursoturistico (
-  nombreRecurso VARCHAR(255) PRIMARY KEY,
-  tipo VARCHAR(100),
-  precio DECIMAL(10, 2),
-  limiteOcupacion INT,
-  descripcion TEXT
-);
-
 CREATE TABLE Usuario (
   nombre VARCHAR(255) PRIMARY KEY,
   contrasena VARCHAR(255)
@@ -22,8 +12,6 @@ CREATE TABLE Login (
   FOREIGN KEY (usuario_nombre) REFERENCES usuario(nombre)
 );
 
-
-
 CREATE TABLE Reserva (
   id_reserva INT PRIMARY KEY,
   nombre_recurso VARCHAR(255),
@@ -35,13 +23,29 @@ CREATE TABLE Reserva (
   FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre)
 );
 
-
 CREATE TABLE Presupuesto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50),
     precio DECIMAL(10, 2),
     FOREIGN KEY (nombre_usuario) REFERENCES usuario(nombre)
 );
+
+CREATE TABLE Recursoturistico (
+  nombreRecurso VARCHAR(255) PRIMARY KEY,
+  tipo VARCHAR(100),
+  precio DECIMAL(10, 2),
+  limiteOcupacion INT,
+  descripcion TEXT
+);
+
+
+
+
+
+
+
+
+
 
 
 

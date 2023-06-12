@@ -38,7 +38,6 @@ class Index {
           };
           
           $.ajax(settings).done(function (response) {
-            console.log(response);
             var datos = "<p> Título: " + response["articles"][0]["title"] + "</p>"
             datos += "<p> Resumen: " + response["articles"][0]["summary"] + "</p>"
             datos += "<p> ------------------------------------------------ </p>"
