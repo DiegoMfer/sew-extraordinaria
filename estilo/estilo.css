@@ -25,8 +25,8 @@ body{
 }
 /*Especificidad : 001*/
 h1 {
-    color:white;
-    background-color: grey;
+    color:black;
+    background-color: white;
 }
 
 /* ---------------- Nav ---------------*/
@@ -38,6 +38,11 @@ nav > a{
     color: white;
     background-color: black
     
+}
+
+nav > h1{
+    color:white;
+    background-color: black;
 }
 
 /*----------------- Section -----------------*/
