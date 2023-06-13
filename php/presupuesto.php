@@ -26,7 +26,7 @@ class Presupuesto
         return $this->precio;
     }
 
-    
+
 }
 
 
@@ -134,28 +134,28 @@ class Lista
         $this->recursos = $_SESSION['recursos'];
         $nombreUsuario = $_SESSION['username'];
         $conexion = new mysqli("localhost", "test", "test", "sew");
-        
+
         // Verificar si hay error de conexión
         if ($conexion->connect_error) {
             die("Error de conexión: " . $conexion->connect_error);
         }
-        
+
         // Consulta para obtener los presupuestos por usuario
         $consulta = $conexion->query("SELECT * FROM presupuesto WHERE nombre_usuario = '$nombreUsuario'");
-        
+
         // Crear array de presupuestos
         $this->presupuestos = [];
         while ($fila = $consulta->fetch_assoc()) {
             $nombre = $fila['nombre_usuario'];
             $precio = $fila['precio'];
-        
+
             $presupuesto = new Presupuesto($nombre, $precio);
             $this->presupuestos[] = $presupuesto;
         }
-        
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $precioTotal = $this->calcularPrecioTotal();
-            
+
             // Insertar nuevo presupuesto en la base de datos
             $insertQuery = "INSERT INTO presupuesto (nombre_usuario, precio) VALUES ('$nombreUsuario', $precioTotal)";
             if ($conexion->query($insertQuery) === true) {
@@ -164,12 +164,12 @@ class Lista
                 echo "Error al insertar el presupuesto: " . $conexion->error;
             }
         }
-        
+
         // Cerrar la conexión
         $conexion->close();
-        
 
-        
+
+
 
 
 
@@ -270,38 +270,21 @@ $presupuestos = $listaReservas->getPresupuestos();
                 <?php echo $_SESSION['username']; ?>
             </h2>
             <?php if (!empty($reservas)): ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Recurso</th>
-                            <th>Fecha</th>
-                            <th>Plazas reservadas</th>
-                            <th>Horas</th>
-                            <th>Precio por hora</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($reservas as $reserva): ?>
-                            <tr>
-                                <td>
-                                    <?php echo $reserva->getNombreRecurso(); ?>
-                                </td>
-                                <td>
-                                    <?php echo $reserva->getFecha(); ?>
-                                </td>
-                                <td>
-                                    <?php echo $reserva->getPlazasReservadas(); ?>
-                                </td>
-                                <td>
-                                    <?php echo $reserva->getDuracion(); ?>
-                                </td>
-                                <td>
-                                    <?php echo $listaReservas->getPrecioRecurso($reserva->getNombreRecurso()); ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <p>Recurso:
+                    <?php echo $reserva->getNombreRecurso(); ?>
+                </p>
+                <p>Fecha:
+                    <?php echo $reserva->getFecha(); ?>
+                </p>
+                <p>Plazas reservadas:
+                    <?php echo $reserva->getPlazasReservadas(); ?>
+                </p>
+                <p>Horas:
+                    <?php echo $reserva->getDuracion(); ?>
+                </p>
+                <p>Precio por hora:
+                    <?php echo $listaReservas->getPrecioRecurso($reserva->getNombreRecurso()); ?>
+                </p>
             <?php else: ?>
                 <p>No se encontraron reservas.</p>
             <?php endif; ?>

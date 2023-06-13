@@ -325,37 +325,26 @@ $lista = new Lista();
 
             <?php if ($lista->getReservas()): ?>
                 <section>
-                    <h2>Reservas realizadas para el recurso seleccionado</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col" id="nombre">Nombre</th>
-                                <th scope="col" id="fecha">Fecha</th>
-                                <th scope="col" id="plazas">Plazas reservadas</th>
-                                <th scope="col" id="duracion">Duración en horas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($lista->getReservas() as $reserva): ?>
-                                <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
-                                    <tr>
-                                        <td headers="nombre" id="<?php echo rand()?>">
-                                            <?php echo $reserva->getNombre(); ?>
-                                        </td>
-                                        <td headers="fecha" id="<?php echo rand()?>">
-                                            <?php echo $reserva->getFecha(); ?>
-                                        </td>
-                                        <td headers="plazas" id="<?php echo rand()?>">
-                                            <?php echo $reserva->getPlazasReservadas(); ?>
-                                        </td>
-                                        <td headers="duracion" id="<?php echo rand()?>">
-                                            <?php echo $reserva->getDuracion(); ?>
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    <h2>Reservas</h2>
+                    <?php foreach ($lista->getReservas() as $reserva): ?>
+                        <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
+                            <div>
+                                <p>Nombre:
+                                    <?php echo $reserva->getNombre(); ?>
+                                </p>
+                                <p>Fecha:
+                                    <?php echo $reserva->getFecha(); ?>
+                                </p>
+                                <p>Plazas reservadas:
+                                    <?php echo $reserva->getPlazasReservadas(); ?>
+                                </p>
+                                <p>Duración en horas:
+                                    <?php echo $reserva->getDuracion(); ?>
+                                </p>
+                                <p>----------------------</p>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </section>
             <?php endif; ?>
 
