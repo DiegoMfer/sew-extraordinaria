@@ -327,26 +327,26 @@ $lista = new Lista();
                     <table>
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Fecha</th>
-                                <th>Plazas reservadas</th>
-                                <th>Duración en horas</th>
+                                <th scope="col" id="nombre">Nombre</th>
+                                <th scope="col" id="fecha">Fecha</th>
+                                <th scope="col" id="plazas">Plazas reservadas</th>
+                                <th scope="col" id="duracion">Duración en horas</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($lista->getReservas() as $reserva): ?>
                                 <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
                                     <tr>
-                                        <td>
+                                        <td headers="nombre">
                                             <?php echo $reserva->getNombre(); ?>
                                         </td>
-                                        <td>
+                                        <td headers="fecha">
                                             <?php echo $reserva->getFecha(); ?>
                                         </td>
-                                        <td>
+                                        <td headers="plazas">
                                             <?php echo $reserva->getPlazasReservadas(); ?>
                                         </td>
-                                        <td>
+                                        <td headers="duracion">
                                             <?php echo $reserva->getDuracion(); ?>
                                         </td>
                                     </tr>
