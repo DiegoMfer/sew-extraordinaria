@@ -328,7 +328,7 @@ $lista = new Lista();
                     <h2>Reservas</h2>
                     <?php foreach ($lista->getReservas() as $reserva): ?>
                         <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
-                            <div>
+                            
                                 <p>Nombre:
                                     <?php echo $reserva->getNombre(); ?>
                                 </p>
@@ -342,7 +342,7 @@ $lista = new Lista();
                                     <?php echo $reserva->getDuracion(); ?>
                                 </p>
                                 <p>----------------------</p>
-                            </div>
+                            
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </section>
