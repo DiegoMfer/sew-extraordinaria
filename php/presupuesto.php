@@ -266,25 +266,29 @@ $presupuestos = $listaReservas->getPresupuestos();
     </nav>
     <main>
         <section>
+
             <h2>Listado de Reservas para:
                 <?php echo $_SESSION['username']; ?>
             </h2>
             <?php if (!empty($reservas)): ?>
-                <p>Recurso:
-                    <?php echo $reserva->getNombreRecurso(); ?>
-                </p>
-                <p>Fecha:
-                    <?php echo $reserva->getFecha(); ?>
-                </p>
-                <p>Plazas reservadas:
-                    <?php echo $reserva->getPlazasReservadas(); ?>
-                </p>
-                <p>Horas:
-                    <?php echo $reserva->getDuracion(); ?>
-                </p>
-                <p>Precio por hora:
-                    <?php echo $listaReservas->getPrecioRecurso($reserva->getNombreRecurso()); ?>
-                </p>
+                <?php foreach ($reservas as $reserva): ?>
+                    <p>Recurso:
+                        <?php echo $reserva->getNombreRecurso(); ?>
+                    </p>
+                    <p>Fecha:
+                        <?php echo $reserva->getFecha(); ?>
+                    </p>
+                    <p>Plazas reservadas:
+                        <?php echo $reserva->getPlazasReservadas(); ?>
+                    </p>
+                    <p>Horas:
+                        <?php echo $reserva->getDuracion(); ?>
+                    </p>
+                    <p>Precio por hora:
+                        <?php echo $listaReservas->getPrecioRecurso($reserva->getNombreRecurso()); ?>
+                    </p>
+                    <p>----------------------------------------------</p>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p>No se encontraron reservas.</p>
             <?php endif; ?>
@@ -295,26 +299,17 @@ $presupuestos = $listaReservas->getPresupuestos();
                 <?php echo $_SESSION['username']; ?>
             </h2>
             <?php if (!empty($presupuestos)): ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre usuario</th>
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($presupuestos as $presupuesto): ?>
-                            <tr>
-                                <td>
-                                    <?php echo $presupuesto->getNombreUsuario(); ?>
-                                </td>
-                                <td>
-                                    <?php echo $presupuesto->getPrecio(); ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <?php foreach ($presupuestos as $presupuesto): ?>
+
+                    <p>Nombre usuario:
+                        <?php echo $presupuesto->getNombreUsuario(); ?>
+                    </p>
+                    <p>Precio:
+                        <?php echo $presupuesto->getPrecio(); ?>
+                    </p>
+                    <p>--------------------------</p>
+
+                <?php endforeach; ?>
             <?php else: ?>
                 <p>No se encontraron presupuestos.</p>
             <?php endif; ?>
