@@ -237,6 +237,8 @@ class Lista
     {
         return $this->reservas;
     }
+
+
 }
 
 $lista = new Lista();
@@ -337,16 +339,16 @@ $lista = new Lista();
                             <?php foreach ($lista->getReservas() as $reserva): ?>
                                 <?php if ($reserva->getNombreRecurso() === $lista->getRecursoSeleccionado()->getNombre()): ?>
                                     <tr>
-                                        <td headers="nombre">
+                                        <td headers="nombre" id="<?php echo rand()?>">
                                             <?php echo $reserva->getNombre(); ?>
                                         </td>
-                                        <td headers="fecha">
+                                        <td headers="fecha" id="<?php echo rand()?>">
                                             <?php echo $reserva->getFecha(); ?>
                                         </td>
-                                        <td headers="plazas">
+                                        <td headers="plazas" id="<?php echo rand()?>">
                                             <?php echo $reserva->getPlazasReservadas(); ?>
                                         </td>
-                                        <td headers="duracion">
+                                        <td headers="duracion" id="<?php echo rand()?>">
                                             <?php echo $reserva->getDuracion(); ?>
                                         </td>
                                     </tr>
