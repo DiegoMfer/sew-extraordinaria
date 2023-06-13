@@ -34,7 +34,7 @@ class LoginForm
                 }
 
                 // Consulta SQL para verificar el usuario y la contraseña
-                $sql = "SELECT * FROM usuario WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
+                $sql = "SELECT * FROM Usuario WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
                 $result = $conn->query($sql);
 
 
